@@ -76,10 +76,13 @@ module MIME::Types
   # end
   # ````
   def self.[](content_type, complete = false, registered = false)
-    mime_type = CACHE.select { |mime| mime.content_type == content_type }.map(&.dup)
+    CACHE.select { |mime| mime.content_type == content_type }.map(&.dup)
   end
 
   def self.for_extension(ext : String)
+    CACHE.select { |mime| mime.preferred_extension == ext }.merge(
+      CACHE.select { |mime| mime.extensions.inlude? ext }
+    )
   end
 
   def self.registered
