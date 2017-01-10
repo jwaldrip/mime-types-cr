@@ -268,7 +268,7 @@ class MIME::Type
 
   # Indicates that a MIME type is like another type. This differs from
   # *==* because *x-* prefixes are removed for this comparison.
-  def like?(other : Type)
+  def like?(other)
     self == other
   end
 
@@ -286,6 +286,10 @@ class MIME::Type
   # match.
   def ==(other : Type)
     simplified == other.simplified
+  end
+
+  def ==(other : String)
+    simplified == self.class.new(other)
   end
 
   def ==(other)
