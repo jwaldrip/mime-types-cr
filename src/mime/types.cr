@@ -81,7 +81,7 @@ module MIME::Types
 
   def self.for_extension(ext : String)
     CACHE.select { |mime| mime.preferred_extension == ext }.merge(
-      CACHE.select { |mime| mime.extensions.inlude? ext }
+      CACHE.select { |mime| mime.extensions.includes? ext }
     )
   end
 
