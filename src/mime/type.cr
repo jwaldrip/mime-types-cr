@@ -36,12 +36,12 @@ class MIME::Type
   #   text/plain        => text/plain
   #   x-chemical/x-pdb  => x-chemical/x-pdb
   #   audio/QCELP       => audio/QCELP
-  getter content_type
+  getter content_type : String
 
   # The list of extensions which are known to be used for this MIME::Type.
   # Non-array values will be coerced into an array with #to_a. Array values
   # will be flattened, *nil* values removed, and made unique.
-  getter extensions
+  getter extensions : Set(String)
 
   # The encoding (*7bit*, *8bit*, *quoted-printable*, or *base64*)
   # required to transport the data of this content type safely across a
@@ -53,7 +53,7 @@ class MIME::Type
   # If the encoding is not provided on construction, this will be either
   # 'quoted-printable' (for text/* media types) and 'base64' for eveything
   # else.
-  getter encoding
+  getter encoding : String
 
   JSON.mapping({
     content_type: {type: String, key: "content-type"},
@@ -97,14 +97,26 @@ class MIME::Type
     }
   end
 
+  private def self.simplify_matchdata(match_data : Nil, remove_x = false, joiner = "/")
+  end
+
   private def self.simplify_matchdata(match_data : Regex::MatchData, remove_x = false, joiner = "/")
-    matchdata.captures.map do |e|
-      e.downcase!
-      e.sub!(%r{^x-}, "") if remove_x
-      yield e if block_given?
+    captures = [match_data[0], match_data[1]]
+    captures.map do |e|
+      e = e.downcase
+      e = e.sub(%r{^x-}, "") if remove_x
       e
     end.join(joiner)
   end
+
+  # private def self.simplify_matchdata(match_data : Regex::MatchData, remove_x = false, joiner = "/")
+  #   match_data.captures.map do |e|
+  #     e.downcase!
+  #     e.sub!(%r{^x-}, "") if remove_x
+  #     yield e
+  #     e
+  #   end.join(joiner)
+  # end
 
   # Builds a `MIME::Type` object from the *content_type*, a MIME Content Type
   # value (e.g., "text/plain" or "applicaton/x-eruby"). The constructed object
@@ -119,25 +131,18 @@ class MIME::Type
   # * Otherwise, the *content_type* will be used as a string.
   #
   # Yields the newly constructed *self* object.
-  def initialize(@content_type : String)
+  def initialize(@content_type : String, @extensions : Set(String) = Set(String).new)
     @xrefs = XRefMap.new
     @friendly = {} of String => String
     @obsolete = false
     @registered = false
     @signature = false
-    @extensions = Set(String).new
     @encoding = default_encoding
-    yield self if block_given
   end
 
-  def initialize(@content_type : String, @extensions : Set(String))
-    @xrefs = XRefMap.new
-    @friendly = {} of String => String
-    @obsolete = false
-    @registered = false
-    @signature = false
-    @encoding = default_encoding
-    yield self if block_given
+  def initialize(*args)
+    initialize(*args)
+    yield self
   end
 
   def encoding=(enc : String)
@@ -181,7 +186,8 @@ class MIME::Type
   #   x-chemical/x-pdb  => x-chemical
   #   audio/QCELP       => audio
   def media_type
-    MEDIA_TYPE_RE.match(simplified).captures[0]
+    match_data = MEDIA_TYPE_RE.match(simplified.to_s)
+    match_data[0] if match_data
   end
 
   # Returns the media type of the unmodified MIME::Type.
@@ -230,7 +236,7 @@ class MIME::Type
   end
 
   # Indicates whether the MIME type has been registered with IANA.
-  getter registered
+  getter registered : Bool
 
   # Indicates whether the MIME type has been registered with IANA.
   def registered?
@@ -238,7 +244,7 @@ class MIME::Type
   end
 
   # Indicateswhether the MIME type is declared as a signature type.
-  getter signature
+  getter signature : Bool
 
   # Indicateswhether the MIME type is declared as a signature type.
   def signature?
@@ -289,11 +295,11 @@ class MIME::Type
   end
 
   def ==(other : String)
-    simplified == self.class.new(other)
+    self == self.class.new(other)
   end
 
   def ==(other)
-    simplified == other.to_s
+    self == other.to_s
   end
 
   # Compares the *other* MIME::Type against the exact content type or the
@@ -320,7 +326,7 @@ class MIME::Type
   #   x-chemical/x-pdb  => x-chemical/x-pdb
   #   audio/QCELP       => audio/qcelp
   def simplified
-    MIME::Type.simplified(match)
+    MIME::Type.simplified(@content_type)
   end
 
   # Compares the *other* MIME::Type based on how reliable it is before doing a

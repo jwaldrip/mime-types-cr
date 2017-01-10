@@ -47,6 +47,16 @@ module MIME::Types
     CACHE.concat mimes
   end
 
+  def self.accepts(accepts : String)
+    strings = accepts.split(",").flat_map(&.split(";").first)
+    Set(Type).new.tap do |mimes|
+      strings.each do |str|
+        mimes.merge! self[str]
+      end
+      mimes.merge! CACHE if strings.includes? "*/*"
+    end
+  end
+
   def self.register(*args)
     CACHE << Type.new(*args)
   end
@@ -85,7 +95,10 @@ module MIME::Types
   end
 
   def self.each
-    return CACHE.each unless block_given?
+    MEDIA_TYPE_RE.each
+  end
+
+  def self.each
     CACHE.each do |item|
       yield item
     end
