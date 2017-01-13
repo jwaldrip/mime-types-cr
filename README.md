@@ -1,4 +1,4 @@
-# MIME Types for Crystal [![Build Status](https://travis-ci.org/jwaldrip/mime-types.cr.svg?branch=master)](https://travis-ci.org/jwaldrip/mime-types.cr) [![GitHub release](https://img.shields.io/github/release/jwaldrip/mime-types.svg)](https://github.com/jwaldrip/mime-types.cr/releases) [![Crystal Docs](https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg)](https://jwaldrip.github.com/mime-types.cr)
+# MIME Types for Crystal [![Build Status](https://travis-ci.org/jwaldrip/mime-types.cr.svg?branch=master)](https://travis-ci.org/jwaldrip/mime-types.cr) [![GitHub release](https://img.shields.io/github/release/jwaldrip/mime-types.cr.svg)](https://github.com/jwaldrip/mime-types.cr/releases) [![Crystal Docs](https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg)](https://jwaldrip.github.com/mime-types.cr)
 
 ## Description
 
