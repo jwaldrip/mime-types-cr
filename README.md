@@ -31,6 +31,7 @@ require "mime/types"
 
 plaintext = MIME::Types["text/plain"] # => [ text/plain ]
 text = plaintext.first
+
 puts text.media_type            # => "text"
 puts text.sub_type              # => "plain"
 
@@ -54,10 +55,10 @@ puts "text/plain" == text       # => true
 puts text == "text/x-plain"     # => false
 puts "text/x-plain" == text     # => false
 
-puts MIME::Type.simplified("x-appl/x-zip") # => "x-appl/x-zip"
-puts MIME::Type.i18n_key("x-appl/x-zip") # => "x-appl.x-zip"
+puts MIME::Type.simplified("x-appl/x-zip")  # => "x-appl/x-zip"
+puts MIME::Type.i18n_key("x-appl/x-zip")    # => "x-appl.x-zip"
 
-puts text.like?("text/x-plain") # => true
+puts text.like?("text/x-plain")                   # => true
 puts text.like?(MIME::Type.new("x-text/x-plain")) # => true
 
 puts text.xref_urls
@@ -66,11 +67,11 @@ puts text.xref_urls
 #      "http://www.iana.org/go/rfc5147" ]
 
 xtext = MIME::Type.new("x-text/x-plain")
-puts xtext.media_type # => "text"
+puts xtext.media_type     # => "text"
 puts xtext.raw_media_type # => "x-text"
-puts xtext.sub_type # => "plain"
-puts xtext.raw_sub_type # => "x-plain"
-puts xtext.complete? # => false
+puts xtext.sub_type       # => "plain"
+puts xtext.raw_sub_type   # => "x-plain"
+puts xtext.complete?      # => false
 
 puts MIME::Types.any? { |type| type.content_type == "text/plain" } # => true
 puts MIME::Types.all?(&.registered?) # => false
@@ -81,6 +82,6 @@ puts qcelp.content_type         # => "audio/QCELP"
 puts qcelp.simplified           # => "audio/qcelp"
 
 xwingz = MIME::Types["application/x-Wingz"].first # => application/x-Wingz
-puts xwingz.content_type        # => "application/x-Wingz"
-puts xwingz.simplified          # => "application/x-wingz"
+puts xwingz.content_type                          # => "application/x-Wingz"
+puts xwingz.simplified                            # => "application/x-wingz"
 ```

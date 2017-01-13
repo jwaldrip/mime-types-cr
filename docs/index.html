@@ -167,6 +167,7 @@ files). A <code><a href="MIME/Type.html">MIME::Type</a></code> stores the known 
 
 plaintext <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>[<span class="s">&quot;text/plain&quot;</span>] <span class="c"># &#61;&gt; &#91; text/plain &#93;</span>
 text <span class="o">=</span> plaintext.first
+
 puts text.media_type            <span class="c"># &#61;&gt; &quot;text&quot;</span>
 puts text.sub_type              <span class="c"># &#61;&gt; &quot;plain&quot;</span>
 
@@ -190,10 +191,10 @@ puts <span class="s">&quot;text/plain&quot;</span> <span class="o">==</span> tex
 puts text <span class="o">==</span> <span class="s">&quot;text/x-plain&quot;</span>     <span class="c"># &#61;&gt; false</span>
 puts <span class="s">&quot;text/x-plain&quot;</span> <span class="o">==</span> text     <span class="c"># &#61;&gt; false</span>
 
-puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.simplified(<span class="s">&quot;x-appl/x-zip&quot;</span>) <span class="c"># &#61;&gt; &quot;x-appl/x-zip&quot;</span>
-puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.i18n_key(<span class="s">&quot;x-appl/x-zip&quot;</span>) <span class="c"># &#61;&gt; &quot;x-appl.x-zip&quot;</span>
+puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.simplified(<span class="s">&quot;x-appl/x-zip&quot;</span>)  <span class="c"># &#61;&gt; &quot;x-appl/x-zip&quot;</span>
+puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.i18n_key(<span class="s">&quot;x-appl/x-zip&quot;</span>)    <span class="c"># &#61;&gt; &quot;x-appl.x-zip&quot;</span>
 
-puts text.like?(<span class="s">&quot;text/x-plain&quot;</span>) <span class="c"># &#61;&gt; true</span>
+puts text.like?(<span class="s">&quot;text/x-plain&quot;</span>)                   <span class="c"># &#61;&gt; true</span>
 puts text.like?(<span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.<span class="k">new</span>(<span class="s">&quot;x-text/x-plain&quot;</span>)) <span class="c"># &#61;&gt; true</span>
 
 puts text.xref_urls
@@ -202,11 +203,11 @@ puts text.xref_urls
 <span class="c">#      &quot;http://www.iana.org/go/rfc5147&quot; &#93;</span>
 
 xtext <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.<span class="k">new</span>(<span class="s">&quot;x-text/x-plain&quot;</span>)
-puts xtext.media_type <span class="c"># &#61;&gt; &quot;text&quot;</span>
+puts xtext.media_type     <span class="c"># &#61;&gt; &quot;text&quot;</span>
 puts xtext.raw_media_type <span class="c"># &#61;&gt; &quot;x-text&quot;</span>
-puts xtext.sub_type <span class="c"># &#61;&gt; &quot;plain&quot;</span>
-puts xtext.raw_sub_type <span class="c"># &#61;&gt; &quot;x-plain&quot;</span>
-puts xtext.complete? <span class="c"># &#61;&gt; false</span>
+puts xtext.sub_type       <span class="c"># &#61;&gt; &quot;plain&quot;</span>
+puts xtext.raw_sub_type   <span class="c"># &#61;&gt; &quot;x-plain&quot;</span>
+puts xtext.complete?      <span class="c"># &#61;&gt; false</span>
 
 puts <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>.any? { <span class="o">|</span><span class="k">type</span><span class="o">|</span> <span class="k">type</span>.content_type <span class="o">==</span> <span class="s">&quot;text/plain&quot;</span> } <span class="c"># &#61;&gt; true</span>
 puts <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>.all?(<span class="o">&</span>.registered?) <span class="c"># &#61;&gt; false</span>
@@ -217,8 +218,8 @@ puts qcelp.content_type         <span class="c"># &#61;&gt; &quot;audio/QCELP&qu
 puts qcelp.simplified           <span class="c"># &#61;&gt; &quot;audio/qcelp&quot;</span>
 
 xwingz <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>[<span class="s">&quot;application/x-Wingz&quot;</span>].first <span class="c"># &#61;&gt; application/x-Wingz</span>
-puts xwingz.content_type        <span class="c"># &#61;&gt; &quot;application/x-Wingz&quot;</span>
-puts xwingz.simplified          <span class="c"># &#61;&gt; &quot;application/x-wingz&quot;</span></code></pre>
+puts xwingz.content_type                          <span class="c"># &#61;&gt; &quot;application/x-Wingz&quot;</span>
+puts xwingz.simplified                            <span class="c"># &#61;&gt; &quot;application/x-wingz&quot;</span></code></pre>
 </div>
 </body>
 </html>
