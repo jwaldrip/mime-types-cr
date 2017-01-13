@@ -1,4 +1,4 @@
-# MIME Types for Crystal [![Build Status](https://travis-ci.org/jwaldrip/promise-cr.svg?branch=master)](https://travis-ci.org/jwaldrip/promise.cr) [![GitHub release](https://img.shields.io/github/release/jwaldrip/promise-cr.svg)](https://github.com/jwaldrip/promise.cr/releases) [![Crystal Docs](https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg)](https://jwaldrip.github.com/promise.cr)
+# MIME Types for Crystal [![Build Status](https://travis-ci.org/jwaldrip/mime-types.cr.svg?branch=master)](https://travis-ci.org/jwaldrip/mime-types.cr) [![GitHub release](https://img.shields.io/github/release/jwaldrip/mime-types.svg)](https://github.com/jwaldrip/mime-types.cr/releases) [![Crystal Docs](https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg)](https://jwaldrip.github.com/mime-types.cr)
 
 ## Description
 
@@ -12,19 +12,19 @@ MIME type definitions.
 MIME content types are used in MIME-compliant communications, as in e-mail or
 HTTP traffic, to indicate the type of content which is transmitted. The
 mime-types library provides the ability for detailed information about MIME
-entities (provided as an enumerable collection of MIME::Type objects) to be
+entities (provided as an enumerable collection of `MIME::Type` objects) to be
 determined and used. There are many types defined by RFCs and vendors, so the
 list is long but by definition incomplete; don't hesitate to add additional
 type definitions. MIME type definitions found in mime-types are from RFCs, W3C
-recommendations, the (IANA Media Types
-registry)[https://www.iana.org/assignments/media-types/media-types.xhtml], and
+recommendations, the [IANA Media Types
+registry](https://www.iana.org/assignments/media-types/media-types.xhtml), and
 user contributions. It conforms to RFCs 2045 and 2231.
 
 ## Synopsis
 
 MIME types are used in MIME entities, as in email or HTTP traffic. It is useful
 at times to have information available about MIME types (or, inversely, about
-files). A MIME::Type stores the known information about one MIME type.
+files). A `MIME::Type` stores the known information about one MIME type.
 
 ```
 require "mime/types"
