@@ -1,9 +1,4 @@
-# MIME Types for Crystal
-
-home :: https://github.com/mime-types/ruby-mime-types/
-code :: https://github.com/jwaldrip/mime-types.cr
-bugs :: https://github.com/jwaldrip/mime-types.cr/issues
-docs :: https://crystalshards.org/docs/github.com/jwaldrip/mime-types.cr
+# MIME Types for Crystal [![Build Status](https://travis-ci.org/jwaldrip/promise-cr.svg?branch=master)](https://travis-ci.org/jwaldrip/promise.cr) [![GitHub release](https://img.shields.io/github/release/jwaldrip/promise-cr.svg)](https://github.com/jwaldrip/promise.cr/releases) [![Crystal Docs](https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg)](https://jwaldrip.github.com/promise.cr)
 
 ## Description
 
@@ -21,8 +16,8 @@ entities (provided as an enumerable collection of MIME::Type objects) to be
 determined and used. There are many types defined by RFCs and vendors, so the
 list is long but by definition incomplete; don't hesitate to add additional
 type definitions. MIME type definitions found in mime-types are from RFCs, W3C
-recommendations, the {IANA Media Types
-registry}[https://www.iana.org/assignments/media-types/media-types.xhtml], and
+recommendations, the (IANA Media Types
+registry)[https://www.iana.org/assignments/media-types/media-types.xhtml], and
 user contributions. It conforms to RFCs 2045 and 2231.
 
 ## Synopsis
