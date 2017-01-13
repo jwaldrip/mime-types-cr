@@ -1,6 +1,3 @@
 language: crystal
 install: shards install
-script:
-  - crystal spec
-  - make docs
-  - git diff --cached --exit-code
+script: crystal spec
