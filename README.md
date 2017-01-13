@@ -26,7 +26,7 @@ MIME types are used in MIME entities, as in email or HTTP traffic. It is useful
 at times to have information available about MIME types (or, inversely, about
 files). A `MIME::Type` stores the known information about one MIME type.
 
-```
+```crystal
 require "mime/types"
 
 plaintext = MIME::Types["text/plain"] # => [ text/plain ]
