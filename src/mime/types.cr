@@ -30,7 +30,8 @@ require "./type"
 # ```
 module MIME::Types
   extend Enumerable(Type)
-  private CACHE = [] of Type
+  alias TypeSet = Set(Type)
+  private CACHE = Set(Type).new
 
   macro load(filename)
     {% json = run("../loader", filename) %}
@@ -40,21 +41,11 @@ module MIME::Types
   end
 
   def self.register(mime : Type)
-    CACHE << mime
+    CACHE.add mime
   end
 
   def self.register(mimes : Array(Type))
     CACHE.concat mimes
-  end
-
-  def self.accepts(accepts : String)
-    strings = accepts.split(",").flat_map(&.split(";").first)
-    Set(Type).new.tap do |mimes|
-      strings.each do |str|
-        mimes.merge! self[str]
-      end
-      mimes.merge! CACHE if strings.includes? "*/*"
-    end
   end
 
   def self.register(*args)
@@ -76,21 +67,26 @@ module MIME::Types
   # end
   # ````
   def self.[](content_type, complete = false, registered = false)
-    CACHE.select { |mime| mime.content_type == content_type }.map(&.dup)
+    CACHE.select do |mime|
+      next if complete && mime.complete?
+      next if registered && mime.registered?
+      content_type == "*/*" || mime.content_type == content_type
+    end.map(&.dup).sort { |a, b| a.priority_compare(b) }
+  end
+
+  def self.for_filename(filename : String)
+    for_extension File.extname(filename).lchomp(".")
   end
 
   def self.for_extension(ext : String)
-    CACHE.select { |mime| mime.preferred_extension == ext }.merge(
-      CACHE.select { |mime| mime.extensions.includes? ext }
-    )
+    Set(Type).new.tap do |types|
+      types.merge! CACHE.select { |mime| mime.complete? && mime.preferred_extension == ext }
+      types.merge! CACHE.select { |mime| mime.complete? && mime.extensions.includes? ext }
+    end
   end
 
   def self.registered
     CACHE.map(&.dup)
-  end
-
-  def self.count
-    CACHE.count
   end
 
   def self.inspect(io)
@@ -101,6 +97,14 @@ module MIME::Types
     MEDIA_TYPE_RE.each
   end
 
+  def self.extensions
+    flat_map(&.extensions)
+  end
+
+  def self.count
+    CACHE.size
+  end
+
   def self.each
     CACHE.each do |item|
       yield item
@@ -108,8 +112,10 @@ module MIME::Types
   end
 
   def self.to_s(io)
-    io << "#<#{self.class}: #{count} variants, #{@extension_index.count} extensions>"
+    io << "#<#{self.class}: #{count} variants, #{extensions.size} extensions>"
   end
 
   load "#{__DIR__}/../../data/mime-types.json"
 end
+
+require "./types/*"

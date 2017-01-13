@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/jwaldrip/mime-types.cr">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>MIME::Type - github.com/jwaldrip/mime-types.cr</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/jwaldrip/mime-types.cr/MIME" data-name="mime">
+      <a href="../MIME.html">MIME</a>
+      
+        <ul>
+  
+  <li class="parent current" data-id="github.com/jwaldrip/mime-types.cr/MIME/Type" data-name="mime::type">
+      <a href="../MIME/Type.html">Type</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/InvalidContentType" data-name="mime::type::invalidcontenttype">
+      <a href="../MIME/Type/InvalidContentType.html">InvalidContentType</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/InvalidEncoding" data-name="mime::type::invalidencoding">
+      <a href="../MIME/Type/InvalidEncoding.html">InvalidEncoding</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef" data-name="mime::type::xref">
+      <a href="../MIME/Type/XRef.html">XRef</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Draft" data-name="mime::type::xref::draft">
+      <a href="../MIME/Type/XRef/Draft.html">Draft</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Note" data-name="mime::type::xref::note">
+      <a href="../MIME/Type/XRef/Note.html">Note</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Person" data-name="mime::type::xref::person">
+      <a href="../MIME/Type/XRef/Person.html">Person</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Rfc" data-name="mime::type::xref::rfc">
+      <a href="../MIME/Type/XRef/Rfc.html">Rfc</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/RfcErrata" data-name="mime::type::xref::rfcerrata">
+      <a href="../MIME/Type/XRef/RfcErrata.html">RfcErrata</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Template" data-name="mime::type::xref::template">
+      <a href="../MIME/Type/XRef/Template.html">Template</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/URI" data-name="mime::type::xref::uri">
+      <a href="../MIME/Type/XRef/URI.html">URI</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRefMap" data-name="mime::type::xrefmap">
+      <a href="../MIME/Type/XRefMap.html">XRefMap</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRefMap/XRefSet" data-name="mime::type::xrefmap::xrefset(t)">
+      <a href="../MIME/Type/XRefMap/XRefSet.html">XRefSet</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types" data-name="mime::types">
+      <a href="../MIME/Types.html">Types</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/Accept" data-name="mime::types::accept">
+      <a href="../MIME/Types/Accept.html">Accept</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/TypeSet" data-name="mime::types::typeset">
+      <a href="../MIME/Types/TypeSet.html">TypeSet</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> MIME::Type
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../MIME/Type.html">MIME::Type</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The definition of one MIME content-type.</p>
+
+<h2>Usage</h2>
+
+<pre><code><span class="k">require</span> <span class="s">&quot;mime/types&quot;</span>
+plaintext <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>[<span class="s">&quot;text/plain&quot;</span>]
+<span class="c"># returns &#91;text/plain, text/plain&#93;</span>
+text <span class="o">=</span> plaintext.first
+print text.media_type <span class="c"># &#61;&gt; &quot;text&quot;</span>
+print text.sub_type   <span class="c"># &#61;&gt; &quot;plain&quot;</span>
+
+puts text.extensions.join(<span class="s">&quot; &quot;</span>) <span class="c"># &#61;&gt; &quot;asc txt c cc h hh cpp&quot;</span>
+
+puts text.encoding                         <span class="c"># &#61;&gt; 8bit</span>
+puts text.binary?                          <span class="c"># &#61;&gt; false</span>
+puts text.ascii?                           <span class="c"># &#61;&gt; true</span>
+puts text <span class="o">==</span> <span class="s">&quot;text/plain&quot;</span>                  <span class="c"># &#61;&gt; true</span>
+puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span>.simplified(<span class="s">&quot;x-appl/x-zip&quot;</span>) <span class="c"># &#61;&gt; &quot;appl/zip&quot;</span></code></pre>
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type">Comparable(<a href="../MIME/Type.html">MIME::Type</a>)</li>
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L22" target="_blank">mime/type.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#i18n_key%28content_type%29-class-method" class="signature"><strong>.i18n_key</strong>(content_type)</a>
+        
+          <div class="summary"><p>Converts a provided <em>content_type</em> into a translation key suitable for use with the I18n library.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#match%28content_type%3AString%29-class-method" class="signature"><strong>.match</strong>(content_type : String)</a>
+        
+          <div class="summary"><p>Return a <code>MatchData</code> object of the <em>content_type</em> against pattern of media types.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28__temp_23%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(__temp_23 : JSON::PullParser)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28content_type%3AString%2Cextensions%3D%5B%5DofString%29-class-method" class="signature"><strong>.new</strong>(content_type : String, extensions = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)</a>
+        
+          <div class="summary"><p>Builds a <code><a href="../MIME/Type.html">MIME::Type</a></code> object from the <em>content_type</em>, a MIME Content Type value (e.g., "text/plain" or "applicaton/x-eruby").</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2Aargs%2C%26block%29-class-method" class="signature"><strong>.new</strong>(*args, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#simplified%28content_type%2Cremove_x%3Dfalse%29-class-method" class="signature"><strong>.simplified</strong>(content_type, remove_x = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>MIME media types are case-insensitive, but are typically presented in a case-preserving format in the type registry.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%28other%29-instance-method" class="signature"><strong>#<=></strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%28other%3ANil%29-instance-method" class="signature"><strong>#<=></strong>(other : Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%28other%3AType%29-instance-method" class="signature"><strong>#<=></strong>(other : Type)</a>
+        
+          <div class="summary"><p>Compares the <em>other</em> MIME::Type against the exact content type or the simplified type (the simplified type will be used if comparing against something that can be treated as a String with #to_s).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AType%29-instance-method" class="signature"><strong>#==</strong>(other : Type)</a>
+        
+          <div class="summary"><p>Returns <em>true</em> if the <em>other</em> object is a MIME::Type and the content types match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AString%29-instance-method" class="signature"><strong>#==</strong>(other : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ascii%3F-instance-method" class="signature"><strong>#ascii?</strong></a>
+        
+          <div class="summary"><p>MIME types can be specified to be sent across a network in particular formats.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#binary%3F-instance-method" class="signature"><strong>#binary?</strong></a>
+        
+          <div class="summary"><p>MIME types can be specified to be sent across a network in particular formats.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#complete%3F-instance-method" class="signature"><strong>#complete?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#content_type%3AString-instance-method" class="signature"><strong>#content_type</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#content_type%3D%28_content_type%3AString%29-instance-method" class="signature"><strong>#content_type=</strong>(_content_type : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#docs%3AString%3F-instance-method" class="signature"><strong>#docs</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#docs%3D%28_docs%3AString%3F%29-instance-method" class="signature"><strong>#docs=</strong>(_docs : String?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encoding%3AString-instance-method" class="signature"><strong>#encoding</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#encoding%3D%28enc%3AString%29-instance-method" class="signature"><strong>#encoding=</strong>(enc : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eql%3F%28other%3AType%29-instance-method" class="signature"><strong>#eql?</strong>(other : Type)</a>
+        
+          <div class="summary"><p>Returns <em>true</em> if the <em>other</em> object is a MIME::Type and the content types match.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#eql%3F%28other%29-instance-method" class="signature"><strong>#eql?</strong>(other)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extensions%3ASet%28String%29-instance-method" class="signature"><strong>#extensions</strong> : Set(String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extensions%3D%28_extensions%3ASet%28String%29%29-instance-method" class="signature"><strong>#extensions=</strong>(_extensions : Set(String))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#friendly%28lang%3AString%3D%26quot%3Ben%26quot%3B%29-instance-method" class="signature"><strong>#friendly</strong>(lang : String = <span class="s">&quot;en&quot;</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#friendly%3D%28_friendly%3AHash%28String%2CString%29%29-instance-method" class="signature"><strong>#friendly=</strong>(_friendly : Hash(String, String))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash-instance-method" class="signature"><strong>#hash</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%29-instance-method" class="signature"><strong>#inspect</strong>(io)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#like%3F%28other%29-instance-method" class="signature"><strong>#like?</strong>(other)</a>
+        
+          <div class="summary"><p>Indicates that a MIME type is like another type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#media_type-instance-method" class="signature"><strong>#media_type</strong></a>
+        
+          <div class="summary"><p>Returns the media type of the simplified MIME::Type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#obsolete%3ABool-instance-method" class="signature"><strong>#obsolete</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#obsolete%3D%28_obsolete%3ABool%29-instance-method" class="signature"><strong>#obsolete=</strong>(_obsolete : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#obsolete%3F-instance-method" class="signature"><strong>#obsolete?</strong></a>
+        
+          <div class="summary"><p>Returns <em>true</em> if the media type is obsolete.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#preferred_extension-instance-method" class="signature"><strong>#preferred_extension</strong></a>
+        
+          <div class="summary"><p>The preferred extension for this MIME type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#preferred_extension%3D%28ext%3AString%29-instance-method" class="signature"><strong>#preferred_extension=</strong>(ext : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#priority_compare%28other%3AType%29-instance-method" class="signature"><strong>#priority_compare</strong>(other : Type)</a>
+        
+          <div class="summary"><p>Compares the <em>other</em> MIME::Type based on how reliable it is before doing a normal &lt;=> comparison.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#priority_compare%28other%3AString%29-instance-method" class="signature"><strong>#priority_compare</strong>(other : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw_media_type-instance-method" class="signature"><strong>#raw_media_type</strong></a>
+        
+          <div class="summary"><p>Returns the media type of the unmodified MIME::Type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw_sub_type-instance-method" class="signature"><strong>#raw_sub_type</strong></a>
+        
+          <div class="summary"><p>Returns the media type of the unmodified MIME::Type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#registered%3ABool-instance-method" class="signature"><strong>#registered</strong> : Bool</a>
+        
+          <div class="summary"><p>Indicates whether the MIME type has been registered with IANA.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#registered%3D%28_registered%3ABool%29-instance-method" class="signature"><strong>#registered=</strong>(_registered : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#registered%3F-instance-method" class="signature"><strong>#registered?</strong></a>
+        
+          <div class="summary"><p>Indicates whether the MIME type has been registered with IANA.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#signature%3ABool-instance-method" class="signature"><strong>#signature</strong> : Bool</a>
+        
+          <div class="summary"><p>Indicateswhether the MIME type is declared as a signature type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#signature%3D%28_signature%3ABool%29-instance-method" class="signature"><strong>#signature=</strong>(_signature : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#signature%3F-instance-method" class="signature"><strong>#signature?</strong></a>
+        
+          <div class="summary"><p>Indicateswhether the MIME type is declared as a signature type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#simplified%28remove_x%3Dfalse%29-instance-method" class="signature"><strong>#simplified</strong>(remove_x = <span class="n">false</span>)</a>
+        
+          <div class="summary"><p>A simplified form of the MIME content-type string, suitable for case-insensitive comparison, with any extension markers (&lt;tt>x-&lt;/tt) removed and converted to lowercase.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sub_type-instance-method" class="signature"><strong>#sub_type</strong></a>
+        
+          <div class="summary"><p>Returns the sub-type of the simplified MIME::Type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#use_instead-instance-method" class="signature"><strong>#use_instead</strong></a>
+        
+          <div class="summary"><p>Returns the media type or types that should be used instead of this media type, if it is obsolete.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#use_instead%3D%28_use_instead%3AString%3F%29-instance-method" class="signature"><strong>#use_instead=</strong>(_use_instead : String?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xref_urls-instance-method" class="signature"><strong>#xref_urls</strong></a>
+        
+          <div class="summary"><p>The decoded cross-reference URL list for this MIME::Type.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xrefs%3AMIME%3A%3AType%3A%3AXRefMap-instance-method" class="signature"><strong>#xrefs</strong> : MIME::Type::XRefMap</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xrefs%3D%28_xrefs%3AXRefMap%29-instance-method" class="signature"><strong>#xrefs=</strong>(_xrefs : XRefMap)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="i18n_key&#40;content_type&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>i18n_key</strong>(content_type)
+
+        <a class="method-permalink" href="#i18n_key%28content_type%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Converts a provided <em>content_type</em> into a translation key suitable for
+use with the I18n library.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="match&#40;content_type:String&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>match</strong>(content_type : String)
+
+        <a class="method-permalink" href="#match%28content_type%3AString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Return a <code>MatchData</code> object of the <em>content_type</em> against pattern of
+media types.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new&#40;__temp_23:JSON::PullParser&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(__temp_23 : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28__temp_23%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new&#40;content_type:String,extensions&#61;&#91;&#93;ofString&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(content_type : String, extensions = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)
+
+        <a class="method-permalink" href="#new%28content_type%3AString%2Cextensions%3D%5B%5DofString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Builds a <code><a href="../MIME/Type.html">MIME::Type</a></code> object from the <em>content_type</em>, a MIME Content Type
+value (e.g., "text/plain" or "applicaton/x-eruby"). The constructed object
+is yielded to an optional block for additional configuration, such as
+associating extensions and encoding information.</p>
+
+<ul><li>When provided a Hash or a <code><a href="../MIME/Type.html">MIME::Type</a></code>, the <code><a href="../MIME/Type.html">MIME::Type</a></code> will be
+  constructed with #init_with.</li><li>When provided an <code>Array</code>, the <code><a href="../MIME/Type.html">MIME::Type</a></code> will be constructed using
+  the first element as the content type and the remaining flattened
+  elements as extensions.</li><li>Otherwise, the <em>content_type</em> will be used as a string.</li></ul>
+
+<p>Yields the newly constructed <em>self</em> object.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new&#40;*args,&amp;block&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*args, &block)
+
+        <a class="method-permalink" href="#new%28%2Aargs%2C%26block%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L134" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="simplified&#40;content_type,remove_x&#61;false&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>simplified</strong>(content_type, remove_x = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#simplified%28content_type%2Cremove_x%3Dfalse%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>MIME media types are case-insensitive, but are typically presented in a
+case-preserving format in the type registry. This method converts
+<em>content_type</em> to lowercase.</p>
+
+<p>In previous versions of mime-types, this would also remove any extension
+prefix (<em>x-</em>). This is no longer default behaviour, but may be
+provided by providing a truth value to <em>remove_x_prefix</em>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="&#40;other&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other)
+
+        <a class="method-permalink" href="#%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L303" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#40;other:Nil&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : Nil)
+
+        <a class="method-permalink" href="#%28other%3ANil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L299" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#40;other:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#%28other%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Compares the <em>other</em> MIME::Type against the exact content type or the
+simplified type (the simplified type will be used if comparing against
+something that can be treated as a String with #to_s). In comparisons, this
+is done against the lowercase version of the MIME::Type.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L295" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#61;&#61;&#40;other:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <em>true</em> if the <em>other</em> object is a MIME::Type and the content types
+match.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L279" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#61;&#61;&#40;other:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : String)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L283" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#61;&#61;&#40;other&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L287" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ascii?-instance-method">
+      <div class="signature">
+        
+        def <strong>ascii?</strong>
+
+        <a class="method-permalink" href="#ascii%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>MIME types can be specified to be sent across a network in particular
+formats. This method returns <em>false</em> when the MIME::Type encoding is
+set to <em>base64</em>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L213" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="binary?-instance-method">
+      <div class="signature">
+        
+        def <strong>binary?</strong>
+
+        <a class="method-permalink" href="#binary%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>MIME types can be specified to be sent across a network in particular
+formats. This method returns <em>true</em> when the MIME::Type encoding is set
+to <em>base64</em>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L220" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="complete?-instance-method">
+      <div class="signature">
+        
+        def <strong>complete?</strong>
+
+        <a class="method-permalink" href="#complete%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L206" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="content_type:String-instance-method">
+      <div class="signature">
+        
+        def <strong>content_type</strong> : String
+
+        <a class="method-permalink" href="#content_type%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="content_type&#61;&#40;_content_type:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>content_type=</strong>(_content_type : String)
+
+        <a class="method-permalink" href="#content_type%3D%28_content_type%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="docs:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>docs</strong> : String?
+
+        <a class="method-permalink" href="#docs%3AString%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="docs&#61;&#40;_docs:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>docs=</strong>(_docs : String?)
+
+        <a class="method-permalink" href="#docs%3D%28_docs%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encoding:String-instance-method">
+      <div class="signature">
+        
+        def <strong>encoding</strong> : String
+
+        <a class="method-permalink" href="#encoding%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="encoding&#61;&#40;enc:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>encoding=</strong>(enc : String)
+
+        <a class="method-permalink" href="#encoding%3D%28enc%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L139" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eql?&#40;other:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>eql?</strong>(other : <a href="../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#eql%3F%28other%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <em>true</em> if the <em>other</em> object is a MIME::Type and the content types
+match.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L269" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="eql?&#40;other&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>eql?</strong>(other)
+
+        <a class="method-permalink" href="#eql%3F%28other%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L273" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extensions:Set&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extensions</strong> : Set(String)
+
+        <a class="method-permalink" href="#extensions%3ASet%28String%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extensions&#61;&#40;_extensions:Set&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extensions=</strong>(_extensions : Set(String))
+
+        <a class="method-permalink" href="#extensions%3D%28_extensions%3ASet%28String%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="friendly&#40;lang:String&#61;&amp;quot;en&amp;quot;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>friendly</strong>(lang : String = <span class="s">&quot;en&quot;</span>)
+
+        <a class="method-permalink" href="#friendly%28lang%3AString%3D%26quot%3Ben%26quot%3B%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L257" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="friendly&#61;&#40;_friendly:Hash&#40;String,String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>friendly=</strong>(_friendly : Hash(String, String))
+
+        <a class="method-permalink" href="#friendly%3D%28_friendly%3AHash%28String%2CString%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>
+
+        <a class="method-permalink" href="#hash-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect&#40;io&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io)
+
+        <a class="method-permalink" href="#inspect%28io%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="like?&#40;other&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>like?</strong>(other)
+
+        <a class="method-permalink" href="#like%3F%28other%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicates that a MIME type is like another type. This differs from
+<em>==</em> because <em>x-</em> prefixes are removed for this comparison.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L263" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="media_type-instance-method">
+      <div class="signature">
+        
+        def <strong>media_type</strong>
+
+        <a class="method-permalink" href="#media_type-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the media type of the simplified MIME::Type.</p>
+
+<p>text/plain        => text
+  x-chemical/x-pdb  => x-chemical
+  audio/QCELP       => audio</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L175" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="obsolete:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>obsolete</strong> : Bool
+
+        <a class="method-permalink" href="#obsolete%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="obsolete&#61;&#40;_obsolete:Bool&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>obsolete=</strong>(_obsolete : Bool)
+
+        <a class="method-permalink" href="#obsolete%3D%28_obsolete%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="obsolete?-instance-method">
+      <div class="signature">
+        
+        def <strong>obsolete?</strong>
+
+        <a class="method-permalink" href="#obsolete%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <em>true</em> if the media type is obsolete.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L241" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="preferred_extension-instance-method">
+      <div class="signature">
+        
+        def <strong>preferred_extension</strong>
+
+        <a class="method-permalink" href="#preferred_extension-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The preferred extension for this MIME type. If one is not set and there are
+exceptions defined, the first extension will be used.</p>
+
+<p>When setting #preferred_extensions, if #extensions does not contain this
+extension, this will be added to #xtensions.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="preferred_extension&#61;&#40;ext:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>preferred_extension=</strong>(ext : String)
+
+        <a class="method-permalink" href="#preferred_extension%3D%28ext%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="priority_compare&#40;other:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>priority_compare</strong>(other : <a href="../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#priority_compare%28other%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Compares the <em>other</em> MIME::Type based on how reliable it is before doing a
+normal &lt;=> comparison. Used by MIME::Types#[] to sort types. The
+comparisons involved are:</p>
+
+<ol><li>self.simplified &lt;=> other.simplified (ensures that we
+   don't try to compare different types)</li><li>IANA-registered definitions &lt; other definitions.</li><li>Complete definitions &lt; incomplete definitions.</li><li>Current definitions &lt; obsolete definitions.</li><li>Obselete with use-instead names &lt; obsolete without.</li><li>Obsolete use-instead definitions are compared.</li></ol>
+
+<p>While this method is public, its use is strongly discouraged by consumers
+of mime-types. In mime-types 3, this method is likely to see substantial
+revision and simplification to ensure current registered content types sort
+before unregistered or obsolete content types.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L334" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="priority_compare&#40;other:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>priority_compare</strong>(other : String)
+
+        <a class="method-permalink" href="#priority_compare%28other%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L359" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw_media_type-instance-method">
+      <div class="signature">
+        
+        def <strong>raw_media_type</strong>
+
+        <a class="method-permalink" href="#raw_media_type-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the media type of the unmodified MIME::Type.</p>
+
+<p>text/plain        => text
+  x-chemical/x-pdb  => x-chemical
+  audio/QCELP       => audio</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw_sub_type-instance-method">
+      <div class="signature">
+        
+        def <strong>raw_sub_type</strong>
+
+        <a class="method-permalink" href="#raw_sub_type-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the media type of the unmodified MIME::Type.</p>
+
+<p>text/plain        => plain
+  x-chemical/x-pdb  => x-pdb
+  audio/QCELP       => QCELP</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="registered:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>registered</strong> : Bool
+
+        <a class="method-permalink" href="#registered%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicates whether the MIME type has been registered with IANA.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="registered&#61;&#40;_registered:Bool&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>registered=</strong>(_registered : Bool)
+
+        <a class="method-permalink" href="#registered%3D%28_registered%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="registered?-instance-method">
+      <div class="signature">
+        
+        def <strong>registered?</strong>
+
+        <a class="method-permalink" href="#registered%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicates whether the MIME type has been registered with IANA.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="signature:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>signature</strong> : Bool
+
+        <a class="method-permalink" href="#signature%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicateswhether the MIME type is declared as a signature type.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L233" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="signature&#61;&#40;_signature:Bool&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>signature=</strong>(_signature : Bool)
+
+        <a class="method-permalink" href="#signature%3D%28_signature%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="signature?-instance-method">
+      <div class="signature">
+        
+        def <strong>signature?</strong>
+
+        <a class="method-permalink" href="#signature%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicateswhether the MIME type is declared as a signature type.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L236" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="simplified&#40;remove_x&#61;false&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>simplified</strong>(remove_x = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#simplified%28remove_x%3Dfalse%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A simplified form of the MIME content-type string, suitable for
+case-insensitive comparison, with any extension markers (&lt;tt>x-&lt;/tt)
+removed and converted to lowercase.</p>
+
+<p>text/plain        => text/plain
+  x-chemical/x-pdb  => x-chemical/x-pdb
+  audio/QCELP       => audio/qcelp</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L314" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sub_type-instance-method">
+      <div class="signature">
+        
+        def <strong>sub_type</strong>
+
+        <a class="method-permalink" href="#sub_type-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the sub-type of the simplified MIME::Type.</p>
+
+<p>text/plain        => plain
+  x-chemical/x-pdb  => pdb
+  audio/QCELP       => qcelp</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json&#40;json:JSON::Builder&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : JSON::Builder)
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s&#40;io&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="use_instead-instance-method">
+      <div class="signature">
+        
+        def <strong>use_instead</strong>
+
+        <a class="method-permalink" href="#use_instead-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the media type or types that should be used instead of this media
+type, if it is obsolete. If there is no replacement media type, or it is
+not obsolete, <em>nil</em> will be returned.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L253" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="use_instead&#61;&#40;_use_instead:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>use_instead=</strong>(_use_instead : String?)
+
+        <a class="method-permalink" href="#use_instead%3D%28_use_instead%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xref_urls-instance-method">
+      <div class="signature">
+        
+        def <strong>xref_urls</strong>
+
+        <a class="method-permalink" href="#xref_urls-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The decoded cross-reference URL list for this MIME::Type.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L246" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xrefs:MIME::Type::XRefMap-instance-method">
+      <div class="signature">
+        
+        def <strong>xrefs</strong> : <a href="../MIME/Type/XRefMap.html">MIME::Type::XRefMap</a>
+
+        <a class="method-permalink" href="#xrefs%3AMIME%3A%3AType%3A%3AXRefMap-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xrefs&#61;&#40;_xrefs:XRefMap&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>xrefs=</strong>(_xrefs : <a href="../MIME/Type/XRefMap.html">XRefMap</a>)
+
+        <a class="method-permalink" href="#xrefs%3D%28_xrefs%3AXRefMap%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/fa32be685029c169fa76a1292d3407a0a638055f/src/mime/type.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -20,7 +20,7 @@ require "json"
 # puts MIME::Type.simplified("x-appl/x-zip") # => "appl/zip"
 # ```
 class MIME::Type
-  private MEDIA_TYPE_RE = %r{([-\w.+]+)/([-\w.+]*)}
+  private MEDIA_TYPE_RE = %r{(?<media_type>[-\w.+]+)/(?<sub_type>[-\w.+]*)}
   private I18N_RE = %r{[^[:alnum:]]}
   private BINARY_ENCODINGS = %w(base64 8bit)
   private ASCII_ENCODINGS = %w(7bit quoted-printable)
@@ -68,14 +68,12 @@ class MIME::Type
     use_instead:  {type: String, getter: false, nilable: true, key: "use-instead"},
   }, true)
 
+  def_hash @content_type
+
   # Return a `MatchData` object of the *content_type* against pattern of
   # media types.
   def self.match(content_type : String)
     MEDIA_TYPE_RE.match(content_type)
-  end
-
-  def self.match(match_data : Regex::MatchData)
-    match_data
   end
 
   # MIME media types are case-insensitive, but are typically presented in a
@@ -101,22 +99,13 @@ class MIME::Type
   end
 
   private def self.simplify_matchdata(match_data : Regex::MatchData, remove_x = false, joiner = "/")
-    captures = [match_data[0], match_data[1]]
+    captures = [match_data[1], match_data[2]]
     captures.map do |e|
       e = e.downcase
-      e = e.sub(%r{^x-}, "") if remove_x
+      e = e.lchomp("x-") if remove_x
       e
     end.join(joiner)
   end
-
-  # private def self.simplify_matchdata(match_data : Regex::MatchData, remove_x = false, joiner = "/")
-  #   match_data.captures.map do |e|
-  #     e.downcase!
-  #     e.sub!(%r{^x-}, "") if remove_x
-  #     yield e
-  #     e
-  #   end.join(joiner)
-  # end
 
   # Builds a `MIME::Type` object from the *content_type*, a MIME Content Type
   # value (e.g., "text/plain" or "applicaton/x-eruby"). The constructed object
@@ -131,7 +120,9 @@ class MIME::Type
   # * Otherwise, the *content_type* will be used as a string.
   #
   # Yields the newly constructed *self* object.
-  def initialize(@content_type : String, @extensions : Set(String) = Set(String).new)
+  def initialize(@content_type : String, extensions = [] of String)
+    raise InvalidContentType.new(@content_type) unless self.class.match(@content_type)
+    @extensions = Set(String).new(extensions)
     @xrefs = XRefMap.new
     @friendly = {} of String => String
     @obsolete = false
@@ -146,11 +137,10 @@ class MIME::Type
   end
 
   def encoding=(enc : String)
-    if BINARY_ENCODINGS.include?(enc) || ASCII_ENCODINGS.include?(enc)
-      @encoding = enc
-    else
+    unless BINARY_ENCODINGS.includes?(enc) || ASCII_ENCODINGS.includes?(enc)
       raise InvalidEncoding.new(enc)
     end
+    @encoding = enc
   end
 
   def inspect(io)
@@ -171,13 +161,10 @@ class MIME::Type
   end
 
   def preferred_extension=(ext : String)
-    @extensions.unshift(ext)
-  end
-
-  # Merge the *extensions* provided into this MIME::Type. The extensions added
-  # will be merged uniquely.
-  def add_extensions(*extensions)
-    @extensions += extensions
+    ary = @extensions.to_a
+    ary.unshift(ext)
+    @extensions = Set.new(ary)
+    ext
   end
 
   # Returns the media type of the simplified MIME::Type.
@@ -186,8 +173,7 @@ class MIME::Type
   #   x-chemical/x-pdb  => x-chemical
   #   audio/QCELP       => audio
   def media_type
-    match_data = MEDIA_TYPE_RE.match(simplified.to_s)
-    match_data[0] if match_data
+    self.class.match(simplified).try(&.["media_type"]).to_s
   end
 
   # Returns the media type of the unmodified MIME::Type.
@@ -196,25 +182,25 @@ class MIME::Type
   #   x-chemical/x-pdb  => x-chemical
   #   audio/QCELP       => audio
   def raw_media_type
-    MEDIA_TYPE_RE.match(@content_type).captures[0]
+    self.class.match(@content_type).try(&.["media_type"]).to_s
   end
 
   # Returns the sub-type of the simplified MIME::Type.
   #
   #   text/plain        => plain
   #   x-chemical/x-pdb  => pdb
-  #   audio/QCELP       => QCELP
+  #   audio/QCELP       => qcelp
   def sub_type
-    MEDIA_TYPE_RE.match(simplified).captures[1]
+    self.class.match(simplified).try(&.["sub_type"]).to_s
   end
 
   # Returns the media type of the unmodified MIME::Type.
   #
   #   text/plain        => plain
   #   x-chemical/x-pdb  => x-pdb
-  #   audio/QCELP       => qcelp
+  #   audio/QCELP       => QCELP
   def raw_sub_type
-    MEDIA_TYPE_RE.match(@content_type).captures[1]
+    self.class.match(@content_type).try(&.["sub_type"]).to_s
   end
 
   def complete?
@@ -225,14 +211,14 @@ class MIME::Type
   # formats. This method returns *false* when the MIME::Type encoding is
   # set to *base64*.
   def ascii?
-    ASCII_ENCODINGS.include?(encoding)
+    ASCII_ENCODINGS.includes?(encoding)
   end
 
   # MIME types can be specified to be sent across a network in particular
   # formats. This method returns *true* when the MIME::Type encoding is set
   # to *base64*.
   def binary?
-    BINARY_ENCODINGS.include?(encoding)
+    BINARY_ENCODINGS.includes?(encoding)
   end
 
   # Indicates whether the MIME type has been registered with IANA.
@@ -275,7 +261,7 @@ class MIME::Type
   # Indicates that a MIME type is like another type. This differs from
   # *==* because *x-* prefixes are removed for this comparison.
   def like?(other)
-    self == other
+    simplified(true) == other.simplified(true)
   end
 
   # Returns *true* if the *other* object is a MIME::Type and the content types
@@ -325,8 +311,8 @@ class MIME::Type
   #   text/plain        => text/plain
   #   x-chemical/x-pdb  => x-chemical/x-pdb
   #   audio/QCELP       => audio/qcelp
-  def simplified
-    MIME::Type.simplified(@content_type)
+  def simplified(remove_x = false)
+    MIME::Type.simplified(@content_type, remove_x).to_s
   end
 
   # Compares the *other* MIME::Type based on how reliable it is before doing a
@@ -347,14 +333,14 @@ class MIME::Type
   # before unregistered or obsolete content types.
   def priority_compare(other : Type)
     pc = self <=> other
-    if pc.zero?
+    if pc == 0
       pc = if (reg = registered?) != other.registered?
              reg ? -1 : 1 # registered < unregistered
            elsif (comp = complete?) != other.complete?
              comp ? -1 : 1 # complete < incomplete
            elsif (obs = obsolete?) != other.obsolete?
              obs ? 1 : -1 # current < obsolete
-           elsif obs and ((ui = use_instead) != (oui = other.use_instead))
+           elsif obs && ((ui = use_instead) != (oui = other.use_instead))
              if ui.nil?
                1
              elsif oui.nil?
