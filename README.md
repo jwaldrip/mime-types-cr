@@ -30,7 +30,7 @@ files). A `MIME::Type` stores the known information about one MIME type.
 require "mime/types"
 
 plaintext = MIME::Types["text/plain"] # => [ text/plain ]
-text = plaintext.first
+text = plaintext.first                # => text/plain
 
 puts text.media_type            # => "text"
 puts text.sub_type              # => "plain"
@@ -73,13 +73,13 @@ puts xtext.sub_type       # => "plain"
 puts xtext.raw_sub_type   # => "x-plain"
 puts xtext.complete?      # => false
 
-puts MIME::Types.any? { |type| type.content_type == "text/plain" } # => true
-puts MIME::Types.all?(&.registered?) # => false
+puts MIME::Types.any? { |type| type.content_type == "text/plain" }  # => true
+puts MIME::Types.all?(&.registered?)                                # => false
 
 # Various string representations of MIME types
-qcelp = MIME::Types["audio/QCELP"].first # => audio/QCELP
-puts qcelp.content_type         # => "audio/QCELP"
-puts qcelp.simplified           # => "audio/qcelp"
+qcelp = MIME::Types["audio/QCELP"].first  # => audio/QCELP
+puts qcelp.content_type                   # => "audio/QCELP"
+puts qcelp.simplified                     # => "audio/qcelp"
 
 xwingz = MIME::Types["application/x-Wingz"].first # => application/x-Wingz
 puts xwingz.content_type                          # => "application/x-Wingz"
