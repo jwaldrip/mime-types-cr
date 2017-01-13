@@ -135,12 +135,7 @@
 </div>
 
 <div id="main-content">
-<h1>MIME Types for Crystal</h1>
-
-<p>home :: https://github.com/mime-types/ruby-mime-types/
-code :: https://github.com/jwaldrip/mime-types.cr
-bugs :: https://github.com/jwaldrip/mime-types.cr/issues
-docs :: https://crystalshards.org/docs/github.com/jwaldrip/mime-types.cr</p>
+<h1>MIME Types for Crystal <a href="https://travis-ci.org/jwaldrip/mime-types.cr" target="_blank"><img src="https://travis-ci.org/jwaldrip/mime-types.cr.svg?branch=master" alt="Build Status"/></a> <a href="https://github.com/jwaldrip/mime-types.cr/releases" target="_blank"><img src="https://img.shields.io/github/release/jwaldrip/mime-types.svg" alt="GitHub release"/></a> <a href="https://jwaldrip.github.com/mime-types.cr" target="_blank"><img src="https://img.shields.io/badge/Crystal-Docs-8A2BE2.svg" alt="Crystal Docs"/></a></h1>
 
 <h2>Description</h2>
 
@@ -154,21 +149,21 @@ MIME type definitions.</p>
 <p>MIME content types are used in MIME-compliant communications, as in e-mail or
 HTTP traffic, to indicate the type of content which is transmitted. The
 mime-types library provides the ability for detailed information about MIME
-entities (provided as an enumerable collection of MIME::Type objects) to be
+entities (provided as an enumerable collection of <code><a href="MIME/Type.html">MIME::Type</a></code> objects) to be
 determined and used. There are many types defined by RFCs and vendors, so the
 list is long but by definition incomplete; don't hesitate to add additional
 type definitions. MIME type definitions found in mime-types are from RFCs, W3C
-recommendations, the {IANA Media Types
-registry}[https://www.iana.org/assignments/media-types/media-types.xhtml], and
+recommendations, the <a href="https://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank">IANA Media Types
+registry</a>, and
 user contributions. It conforms to RFCs 2045 and 2231.</p>
 
 <h2>Synopsis</h2>
 
 <p>MIME types are used in MIME entities, as in email or HTTP traffic. It is useful
 at times to have information available about MIME types (or, inversely, about
-files). A MIME::Type stores the known information about one MIME type.</p>
+files). A <code><a href="MIME/Type.html">MIME::Type</a></code> stores the known information about one MIME type.</p>
 
-<pre><code><span class="k">require</span> <span class="s">&quot;mime/types&quot;</span>
+<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;mime/types&quot;</span>
 
 plaintext <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>[<span class="s">&quot;text/plain&quot;</span>] <span class="c"># &#61;&gt; &#91; text/plain &#93;</span>
 text <span class="o">=</span> plaintext.first
