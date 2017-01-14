@@ -110,13 +110,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/Accept" data-name="mime::types::accept">
-      <a href="../MIME/Types/Accept.html">Accept</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/TypeSet" data-name="mime::types::typeset">
-      <a href="../MIME/Types/TypeSet.html">TypeSet</a>
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/List" data-name="mime::types::list">
+      <a href="../MIME/Types/List.html">List</a>
       
     </li>
   
@@ -149,7 +144,7 @@
 
   <p>MIME::Types is a registry of MIME types. It is both a class (created with
 MIME::Types.new) and a default registry (loaded automatically or through
-interactions with MIME::Types.[] and MIME::Types.type_for).</p>
+interactions with <code><a href="../MIME/Types.html#%5B%5D%28content_type%2Ccomplete%3Dfalse%2Cregistered%3Dfalse%29-class-method">MIME::Types.[]</a></code>`, <code>MIME::Types.for_filename</code>, <code><a href="../MIME/Types.html#for_extension%28ext%3AString%29-instance-method">MIME::Types.for_extension</a></code>).</p>
 
 <h2>The Default mime-types Registry</h2>
 
@@ -183,7 +178,7 @@ puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</s
   <h2>Extended Modules</h2>
   <ul class="other-types-list">
   
-    <li class="other-type">Enumerable(<a href="../MIME/Type.html">MIME::Type</a>)</li>
+    <li class="other-type"><a href="../MIME/Types.html">MIME::Types</a></li>
   
   </ul>
 
@@ -197,7 +192,12 @@ puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</s
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L31" target="_blank">mime/types.cr</a>
+      <a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L3" target="_blank">mime/types/list.cr</a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L32" target="_blank">mime/types.cr</a>
     
     <br/>
   
@@ -217,57 +217,21 @@ puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</s
       </li>
     
       <li class="entry-summary">
-        <a href="#count-class-method" class="signature"><strong>.count</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#each-class-method" class="signature"><strong>.each</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#each%28%26block%29-class-method" class="signature"><strong>.each</strong>(&block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#extensions-class-method" class="signature"><strong>.extensions</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#for_extension%28ext%3AString%29-class-method" class="signature"><strong>.for_extension</strong>(ext : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#for_filename%28filename%3AString%29-class-method" class="signature"><strong>.for_filename</strong>(filename : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#inspect%28io%29-class-method" class="signature"><strong>.inspect</strong>(io)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#register%28mime%3AType%29-class-method" class="signature"><strong>.register</strong>(mime : Type)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#register%28mimes%3AArray%28Type%29%29-class-method" class="signature"><strong>.register</strong>(mimes : Array(Type))</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#register%28%2Aargs%29-class-method" class="signature"><strong>.register</strong>(*args)</a>
         
+          <div class="summary"><p>Registers a new <code><a href="../MIME/Type.html">MIME::Type</a></code>, delegating to <code><a href="../MIME/Type.html#new%28__temp_23%3AJSON%3A%3APullParser%29-class-method">MIME::Type.new</a></code></p></div>
+        
       </li>
     
       <li class="entry-summary">
-        <a href="#registered-class-method" class="signature"><strong>.registered</strong></a>
+        <a href="#registry-class-method" class="signature"><strong>.registry</strong></a>
+        
+          <div class="summary"><p>Returns a list of all registered MIME::Types</p></div>
         
       </li>
     
@@ -280,17 +244,54 @@ puts <span class="t">MIME</span><span class="t">::</span><span class="t">Type</s
 
 
 
-
-
-  <h2>Macro Summary</h2>
+  <h2>Instance Method Summary</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#load%28filename%29-macro" class="signature"><strong>load</strong>(filename)</a>
+        <a href="#for_extension%28ext%3AString%29-instance-method" class="signature"><strong>#for_extension</strong>(ext : String)</a>
+        
+          <div class="summary"><p>Returns the type for a extension string</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type_for%28file%3AFile%29-instance-method" class="signature"><strong>#type_for</strong>(file : File)</a>
+        
+          <div class="summary"><p>Returns the type for a File</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type_for%28filename%3AString%29-instance-method" class="signature"><strong>#type_for</strong>(filename : String)</a>
+        
+          <div class="summary"><p>Returns the type for a filename string</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type_for%28request%3AHTTP%3A%3ARequest%29-instance-method" class="signature"><strong>#type_for</strong>(request : HTTP::Request)</a>
+        
+          <div class="summary"><p>Returns the types for an <code>HTTP::Request</code> Content-Type header.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type_for%28response%3AHTTP%3A%3AClient%3A%3AResponse%29-instance-method" class="signature"><strong>#type_for</strong>(response : HTTP::Client::Response)</a>
+        
+          <div class="summary"><p>Returns the types for an <code>HTTP::Client::Response</code> Content-Type header.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#type_for_accept%28request%3AHTTP%3A%3ARequest%29-instance-method" class="signature"><strong>#type_for_accept</strong>(request : HTTP::Request)</a>
+        
+          <div class="summary"><p>Returns the types for an <code>HTTP::Request</code> Accept header.</p></div>
         
       </li>
     
   </ul>
+
+
 
 
 
@@ -325,103 +326,7 @@ one for the general case, and one for VMS systems).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L69" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="count-class-method">
-      <div class="signature">
-        
-        def self.<strong>count</strong>
-
-        <a class="method-permalink" href="#count-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L104" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="each-class-method">
-      <div class="signature">
-        
-        def self.<strong>each</strong>
-
-        <a class="method-permalink" href="#each-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L96" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="each&#40;&amp;block&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>each</strong>(&block)
-
-        <a class="method-permalink" href="#each%28%26block%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L108" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="extensions-class-method">
-      <div class="signature">
-        
-        def self.<strong>extensions</strong>
-
-        <a class="method-permalink" href="#extensions-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L100" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="for_extension&#40;ext:String&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>for_extension</strong>(ext : String)
-
-        <a class="method-permalink" href="#for_extension%28ext%3AString%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L81" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="for_filename&#40;filename:String&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>for_filename</strong>(filename : String)
-
-        <a class="method-permalink" href="#for_filename%28filename%3AString%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -437,39 +342,7 @@ one for the general case, and one for VMS systems).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L92" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="register&#40;mime:Type&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>register</strong>(mime : <a href="../MIME/Type.html">Type</a>)
-
-        <a class="method-permalink" href="#register%28mime%3AType%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L43" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="register&#40;mimes:Array&#40;Type&#41;&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>register</strong>(mimes : Array(<a href="../MIME/Type.html">Type</a>))
-
-        <a class="method-permalink" href="#register%28mimes%3AArray%28Type%29%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -482,26 +355,30 @@ one for the general case, and one for VMS systems).</p>
         <a class="method-permalink" href="#register%28%2Aargs%29-class-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L51" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="registered-class-method">
-      <div class="signature">
-        
-        def self.<strong>registered</strong>
-
-        <a class="method-permalink" href="#registered-class-method">#</a>
-      </div>
+        <div class="doc"><p>Registers a new <code><a href="../MIME/Type.html">MIME::Type</a></code>, delegating to <code><a href="../MIME/Type.html#new%28__temp_23%3AJSON%3A%3APullParser%29-class-method">MIME::Type.new</a></code></p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="registry-class-method">
+      <div class="signature">
+        
+        def self.<strong>registry</strong>
+
+        <a class="method-permalink" href="#registry-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns a list of all registered MIME::Types</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -517,7 +394,7 @@ one for the general case, and one for VMS systems).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -525,26 +402,118 @@ one for the general case, and one for VMS systems).</p>
 
 
 
-
-
-  <h2>Macro Detail</h2>
+  <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="load&#40;filename&#41;-macro">
+    <div class="entry-detail" id="for_extension&#40;ext:String&#41;-instance-method">
       <div class="signature">
         
-        macro <strong>load</strong>(filename)
+        def <strong>for_extension</strong>(ext : String)
 
-        <a class="method-permalink" href="#load%28filename%29-macro">#</a>
+        <a class="method-permalink" href="#for_extension%28ext%3AString%29-instance-method">#</a>
       </div>
+      
+        <div class="doc"><p>Returns the type for a extension string</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/1d9fcbf5d089b0acc2c4f8e12d517dd4294f0a68/src/mime/types.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>
   
+    <div class="entry-detail" id="type_for&#40;file:File&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>type_for</strong>(file : File)
+
+        <a class="method-permalink" href="#type_for%28file%3AFile%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the type for a File</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L109" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type_for&#40;filename:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>type_for</strong>(filename : String)
+
+        <a class="method-permalink" href="#type_for%28filename%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the type for a filename string</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type_for&#40;request:HTTP::Request&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>type_for</strong>(request : HTTP::Request)
+
+        <a class="method-permalink" href="#type_for%28request%3AHTTP%3A%3ARequest%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the types for an <code>HTTP::Request</code> Content-Type header.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type_for&#40;response:HTTP::Client::Response&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>type_for</strong>(response : HTTP::Client::Response)
+
+        <a class="method-permalink" href="#type_for%28response%3AHTTP%3A%3AClient%3A%3AResponse%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the types for an <code>HTTP::Client::Response</code> Content-Type header.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L104" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="type_for_accept&#40;request:HTTP::Request&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>type_for_accept</strong>(request : HTTP::Request)
+
+        <a class="method-permalink" href="#type_for_accept%28request%3AHTTP%3A%3ARequest%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the types for an <code>HTTP::Request</code> Accept header.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
 
 
 </div>

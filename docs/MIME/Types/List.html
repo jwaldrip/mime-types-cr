@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/jwaldrip/mime-types.cr">
+  <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../../js/doc.js"></script>
+  <title>MIME::Types::List - github.com/jwaldrip/mime-types.cr</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/jwaldrip/mime-types.cr/MIME" data-name="mime">
+      <a href="../../MIME.html">MIME</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type" data-name="mime::type">
+      <a href="../../MIME/Type.html">Type</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/InvalidContentType" data-name="mime::type::invalidcontenttype">
+      <a href="../../MIME/Type/InvalidContentType.html">InvalidContentType</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/InvalidEncoding" data-name="mime::type::invalidencoding">
+      <a href="../../MIME/Type/InvalidEncoding.html">InvalidEncoding</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef" data-name="mime::type::xref">
+      <a href="../../MIME/Type/XRef.html">XRef</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Draft" data-name="mime::type::xref::draft">
+      <a href="../../MIME/Type/XRef/Draft.html">Draft</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Note" data-name="mime::type::xref::note">
+      <a href="../../MIME/Type/XRef/Note.html">Note</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Person" data-name="mime::type::xref::person">
+      <a href="../../MIME/Type/XRef/Person.html">Person</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Rfc" data-name="mime::type::xref::rfc">
+      <a href="../../MIME/Type/XRef/Rfc.html">Rfc</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/RfcErrata" data-name="mime::type::xref::rfcerrata">
+      <a href="../../MIME/Type/XRef/RfcErrata.html">RfcErrata</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/Template" data-name="mime::type::xref::template">
+      <a href="../../MIME/Type/XRef/Template.html">Template</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRef/URI" data-name="mime::type::xref::uri">
+      <a href="../../MIME/Type/XRef/URI.html">URI</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRefMap" data-name="mime::type::xrefmap">
+      <a href="../../MIME/Type/XRefMap.html">XRefMap</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jwaldrip/mime-types.cr/MIME/Type/XRefMap/XRefSet" data-name="mime::type::xrefmap::xrefset(t)">
+      <a href="../../MIME/Type/XRefMap/XRefSet.html">XRefSet</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/jwaldrip/mime-types.cr/MIME/Types" data-name="mime::types">
+      <a href="../../MIME/Types.html">Types</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="github.com/jwaldrip/mime-types.cr/MIME/Types/List" data-name="mime::types::list">
+      <a href="../../MIME/Types/List.html">List</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">struct</span> MIME::Types::List
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../MIME/Types/List.html">MIME::Types::List</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type">Enumerable(<a href="../../MIME/Type.html">MIME::Type</a>)</li>
+  
+    <li class="other-type">Iterable(<a href="../../MIME/Type.html">MIME::Type</a>)</li>
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L4" target="_blank">mime/types/list.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28items%3AEnumerable%28Type%29%29-class-method" class="signature"><strong>.new</strong>(items : Enumerable(Type))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28initial_capacity%3Dnil%29-class-method" class="signature"><strong>.new</strong>(initial_capacity = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%26%28other%3AList%29-instance-method" class="signature"><strong>#&</strong>(other : List)</a>
+        
+          <div class="summary"><p>Intersection: returns a new list containing types common to both lists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AEnumerable%29-instance-method" class="signature"><strong>#-</strong>(other : Enumerable)</a>
+        
+          <div class="summary"><p>Difference: returns a new list containing types in this list that are not present in the other enumerable.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-%28other%3AList%29-instance-method" class="signature"><strong>#-</strong>(other : List)</a>
+        
+          <div class="summary"><p>Difference: returns a new list containing types in this list that are not present in the other.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3C%28object%29-instance-method" class="signature"><strong>#<<</strong>(object)</a>
+        
+          <div class="summary"><p>Alias for <code><a href="../../MIME/Types/List.html#add%28type%3AType%29-instance-method">#add</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3D%3D%28other%3AList%29-instance-method" class="signature"><strong>#==</strong>(other : List)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if both lists have the same elements</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add%28type%3AType%29-instance-method" class="signature"><strong>#add</strong>(type : Type)</a>
+        
+          <div class="summary"><p>Adds <em>type</em> to the list and returns <code>self</code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add%28%2Aargs%29-instance-method" class="signature"><strong>#add</strong>(*args)</a>
+        
+          <div class="summary"><p>Adds <em>type</em> to the list and returns <code>self</code>, delegating *<em>args</em> to MIME::Type.new.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear-instance-method" class="signature"><strong>#clear</strong></a>
+        
+          <div class="summary"><p>Removes all types in the list, and returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dup-instance-method" class="signature"><strong>#dup</strong></a>
+        
+          <div class="summary"><p>Returns a new list with all of the same elements</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each-instance-method" class="signature"><strong>#each</strong></a>
+        
+          <div class="summary"><p>Returns an iterator for each type in the list.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#each</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26block%29-instance-method" class="signature"><strong>#each</strong>(&block)</a>
+        
+          <div class="summary"><p>Yields each type in the list, and returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#each</strong>(*args, **options, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F-instance-method" class="signature"><strong>#empty?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the list is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extensions-instance-method" class="signature"><strong>#extensions</strong></a>
+        
+          <div class="summary"><p>lists all the extensions for all types in the list</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash-instance-method" class="signature"><strong>#hash</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes%3F%28%2Aargs%29-instance-method" class="signature"><strong>#includes?</strong>(*args)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes%3F%28type%3AType%29-instance-method" class="signature"><strong>#includes?</strong>(type : Type)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if type exists in the list.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect%28io%29-instance-method" class="signature"><strong>#inspect</strong>(io)</a>
+        
+          <div class="summary"><p>Alias of <code><a href="../../MIME/Types/List.html#to_s%28io%29-instance-method">#to_s</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#intersects%3F%28other%3AList%29-instance-method" class="signature"><strong>#intersects?</strong>(other : List)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the list and the given list have at least one element in common.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#merge%21%28elems%3AEnumerable%28Type%7CString%29%29-instance-method" class="signature"><strong>#merge!</strong>(elems : Enumerable(Type | String))</a>
+        
+          <div class="summary"><p>Adds <code><a href="../../MIME/Types/List.html#each-instance-method">#each</a></code> element of <em>types</em> to the list and returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pretty_print%28pp%29%3ANil-instance-method" class="signature"><strong>#pretty_print</strong>(pp) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remove%28%2Aargs%29-instance-method" class="signature"><strong>#remove</strong>(*args)</a>
+        
+          <div class="summary"><p>Removes <em>type</em> from the list and returns <code>self</code>, delegating *<em>args</em> to MIME::Type.new.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remove%28other%3AEnumerable%29-instance-method" class="signature"><strong>#remove</strong>(other : Enumerable)</a>
+        
+          <div class="summary"><p>Returns <code>self</code> after removing from it those elements that are present in the given enumerable.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remove%28type%3AType%29-instance-method" class="signature"><strong>#remove</strong>(type : Type)</a>
+        
+          <div class="summary"><p>Removes the type from the list and returns <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        
+          <div class="summary"><p>Returns the number of types in the list.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a-instance-method" class="signature"><strong>#to_a</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        
+          <div class="summary"><p>Writes a string representation of the list to <em>io</em></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%7C%28other%3AList%29-instance-method" class="signature"><strong>#|</strong>(other : List)</a>
+        
+          <div class="summary"><p>Union: returns a new list containing all unique types from both lists.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;items:Enumerable&#40;Type&#41;&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(items : Enumerable(<a href="../../MIME/Type.html">Type</a>))
+
+        <a class="method-permalink" href="#new%28items%3AEnumerable%28Type%29%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new&#40;initial_capacity&#61;nil&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(initial_capacity = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28initial_capacity%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="&amp;&#40;other:List&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>&</strong>(other : <a href="../../MIME/Types/List.html">List</a>)
+
+        <a class="method-permalink" href="#%26%28other%3AList%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Intersection: returns a new list containing types common to both lists.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>} <span class="o">&</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;application/json&quot;</span>} <span class="c"># &#61;&gt; MIME::Type::List&#123;&quot;text/html&quot;&#125;</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-&#40;other:Enumerable&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : Enumerable)
+
+        <a class="method-permalink" href="#-%28other%3AEnumerable%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Difference: returns a new list containing types in this list that are not
+present in the other enumerable.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>} <span class="o">-</span> [<span class="s">&quot;text/plain&quot;</span>] <span class="c"># &#61;&gt; MIME::Type::List&#123;text/html&#125;</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L214" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-&#40;other:List&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="../../MIME/Types/List.html">List</a>)
+
+        <a class="method-permalink" href="#-%28other%3AList%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Difference: returns a new list containing types in this list that are not
+present in the other.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>} <span class="o">-</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{text<span class="s">/plain&#125; # &#61;&gt; MIME::Type::List&#123;text/</span>html}</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L202" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;&lt;&#40;object&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(object)
+
+        <a class="method-permalink" href="#%3C%3C%28object%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Alias for <code><a href="../../MIME/Types/List.html#add%28type%3AType%29-instance-method">#add</a></code></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#61;&#61;&#40;other:List&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="../../MIME/Types/List.html">List</a>)
+
+        <a class="method-permalink" href="#%3D%3D%28other%3AList%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>true</code> if both lists have the same elements</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>} <span class="o">==</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>} <span class="c"># &#61;&gt; true</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L223" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add&#40;type:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(type : <a href="../../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#add%28type%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Adds <em>type</em> to the list and returns <code>self</code></p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; false</span>
+s <span class="o"><<</span> <span class="s">&quot;application/json&quot;</span>
+s.includes? <span class="s">&quot;application/json&quot;</span> <span class="c"># &#61;&gt; true</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add&#40;*args&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(*args)
+
+        <a class="method-permalink" href="#add%28%2Aargs%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Adds <em>type</em> to the list and returns <code>self</code>, delegating *<em>args</em> to MIME::Type.new.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; false</span>
+s <span class="o"><<</span> <span class="n">8</span>
+s.includes? <span class="n">8</span> <span class="c"># &#61;&gt; true</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong>
+
+        <a class="method-permalink" href="#clear-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Removes all types in the list, and returns <code>self</code>.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.size <span class="c"># &#61;&gt; 2</span>
+s.clear
+s.size <span class="c"># &#61;&gt; 0</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L232" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dup-instance-method">
+      <div class="signature">
+        
+        def <strong>dup</strong>
+
+        <a class="method-permalink" href="#dup-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns a new list with all of the same elements</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>
+
+        <a class="method-permalink" href="#each-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns an iterator for each type in the list.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L165" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each&#40;*args,**options&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(*args, **options)
+
+        <a class="method-permalink" href="#each%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each&#40;&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&block)
+
+        <a class="method-permalink" href="#each%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Yields each type in the list, and returns <code>self</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each&#40;*args,**options,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(*args, **options, &block)
+
+        <a class="method-permalink" href="#each%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong>
+
+        <a class="method-permalink" href="#empty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>true</code> if the list is empty.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>.<span class="k">new</span>
+s.empty? <span class="c"># &#61;&gt; true</span>
+s <span class="o"><<</span> <span class="s">&quot;text/plain&quot;</span>
+s.empty? <span class="c"># &#61;&gt; false</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L153" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extensions-instance-method">
+      <div class="signature">
+        
+        def <strong>extensions</strong>
+
+        <a class="method-permalink" href="#extensions-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>lists all the extensions for all types in the list</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L241" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>
+
+        <a class="method-permalink" href="#hash-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L256" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?&#40;*args&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(*args)
+
+        <a class="method-permalink" href="#includes%3F%28%2Aargs%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?&#40;type:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(type : <a href="../../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#includes%3F%28type%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>true</code> if type exists in the list.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.includes? <span class="s">&quot;text/plain&quot;</span>       <span class="c"># &#61;&gt; true</span>
+s.includes? <span class="s">&quot;application/json&quot;</span> <span class="c"># &#61;&gt; false</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect&#40;io&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io)
+
+        <a class="method-permalink" href="#inspect%28io%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Alias of <code><a href="../../MIME/Types/List.html#to_s%28io%29-instance-method">#to_s</a></code></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="intersects?&#40;other:List&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>intersects?</strong>(other : <a href="../../MIME/Types/List.html">List</a>)
+
+        <a class="method-permalink" href="#intersects%3F%28other%3AList%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>true</code> if the list and the given list have at least one element in
+common.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>}.intersects? <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;application/xml&quot;</span>, <span class="s">&quot;application/json&quot;</span>} <span class="c"># &#61;&gt; false</span>
+<span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>}.intersects? <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/richtext&quot;</span>}         <span class="c"># &#61;&gt; true</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L267" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="merge&#33;&#40;elems:Enumerable&#40;Type|String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>merge!</strong>(elems : Enumerable(<a href="../../MIME/Type.html">Type</a> | String))
+
+        <a class="method-permalink" href="#merge%21%28elems%3AEnumerable%28Type%7CString%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Adds <code><a href="../../MIME/Types/List.html#each-instance-method">#each</a></code> element of <em>types</em> to the list and returns <code>self</code>.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.merge! [<span class="s">&quot;application/json&quot;</span>]
+s.size <span class="c"># &#61;&gt; 3</span></code></pre>
+
+<p>See also: <code><a href="../../MIME/Types/List.html#%7C%28other%3AList%29-instance-method">#|</a></code> to merge two lists and return a new one.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pretty_print&#40;pp&#41;:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>pretty_print</strong>(pp) : Nil
+
+        <a class="method-permalink" href="#pretty_print%28pp%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L252" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remove&#40;*args&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>remove</strong>(*args)
+
+        <a class="method-permalink" href="#remove%28%2Aargs%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Removes <em>type</em> from the list and returns <code>self</code>, delegating *<em>args</em> to MIME::Type.new.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; true</span>
+s.remove <span class="s">&quot;text/plain&quot;</span>
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; false</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L103" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remove&#40;other:Enumerable&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>remove</strong>(other : Enumerable)
+
+        <a class="method-permalink" href="#remove%28other%3AEnumerable%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>self</code> after removing from it those elements that are present in
+the given enumerable.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>}.remove [<span class="s">&quot;text/plain&quot;</span>] <span class="c"># &#61;&gt; MIME::Type::List&#123;&quot;text/html&quot;&#125;</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remove&#40;type:Type&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>remove</strong>(type : <a href="../../MIME/Type.html">Type</a>)
+
+        <a class="method-permalink" href="#remove%28type%3AType%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Removes the type from the list and returns <code>self</code>.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; true</span>
+s.remove <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span>[<span class="s">&quot;text/plain&quot;</span>]
+s.includes? <span class="s">&quot;text/plain&quot;</span> <span class="c"># &#61;&gt; false</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong>
+
+        <a class="method-permalink" href="#size-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the number of types in the list.</p>
+
+<pre><code>s <span class="o">=</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Types</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;text/plain&quot;</span>}
+s.size <span class="c"># &#61;&gt; 2</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L128" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong>
+
+        <a class="method-permalink" href="#to_a-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L236" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s&#40;io&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Writes a string representation of the list to <em>io</em></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L276" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="|&#40;other:List&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>|</strong>(other : <a href="../../MIME/Types/List.html">List</a>)
+
+        <a class="method-permalink" href="#%7C%28other%3AList%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Union: returns a new list containing all unique types from both lists.</p>
+
+<pre><code><span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/plain&quot;</span>, <span class="s">&quot;text/html&quot;</span>} <span class="o">|</span> <span class="t">MIME</span><span class="t">::</span><span class="t">Type</span><span class="t">::</span><span class="t">List</span>{<span class="s">&quot;text/html&quot;</span>, <span class="s">&quot;application/json&quot;</span>} <span class="c"># &#61;&gt; MIME::Type::List&#123;&quot;text/html&quot;, &quot;text/plain&quot;, &quot;application/json&quot;&#125;</span></code></pre>
+
+<p>See also: <code>#merge</code> to add elements from a list to <code>self</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jwaldrip/mime-types.cr/blob/2f4cac98b731593203e5f80467a1fabd254dfcde/src/mime/types/list.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
