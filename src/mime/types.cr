@@ -1,9 +1,10 @@
 require "json"
 require "./type"
+require "./types/list"
 
 # MIME::Types is a registry of MIME types. It is both a class (created with
 # MIME::Types.new) and a default registry (loaded automatically or through
-# interactions with MIME::Types.[] and MIME::Types.type_for).
+# interactions with `MIME::Types.[]``, `MIME::Types.for_filename`, `MIME::Types.for_extension`).
 #
 # ## The Default mime-types Registry
 #
@@ -29,27 +30,32 @@ require "./type"
 # puts MIME::Type.simplified("x-appl/x-zip") # => "appl/zip"
 # ```
 module MIME::Types
-  extend Enumerable(Type)
-  alias TypeSet = Set(Type)
-  private CACHE = Set(Type).new
+  private REGISTRY = List.new
 
-  macro load(filename)
+  private macro load(filename)
     {% json = run("../loader", filename) %}
     JSON.parse({{ json.stringify }}).each do |json|
       register Type.from_json json.to_json
     end
   end
+  load "#{__DIR__}/../../data/mime-types.json"
 
-  def self.register(mime : Type)
-    CACHE.add mime
-  end
-
-  def self.register(mimes : Array(Type))
-    CACHE.concat mimes
-  end
-
+  # Registers a new `MIME::Type`, delegating to `MIME::Type.new`
   def self.register(*args)
-    CACHE << Type.new(*args)
+    REGISTRY.add *args
+  end
+
+  # Returns a list of all registered MIME::Types
+  def self.registry
+    REGISTRY
+  end
+
+  def self.inspect(io)
+    to_s io
+  end
+
+  def self.to_s(io)
+    io << "#<#{self.class}: #{registry.size} variants, #{registry.extensions.size} extensions>"
   end
 
   # Returns a list of MIME::Type objects, which may be empty. The optional
@@ -67,55 +73,58 @@ module MIME::Types
   # end
   # ````
   def self.[](content_type, complete = false, registered = false)
-    CACHE.select do |mime|
+    types = REGISTRY.select do |mime|
       next if complete && mime.complete?
       next if registered && mime.registered?
       content_type == "*/*" || mime.content_type == content_type
     end.map(&.dup).sort { |a, b| a.priority_compare(b) }
+    List.new types
   end
 
-  def self.for_filename(filename : String)
-    for_extension File.extname(filename).lchomp(".")
+  # Returns the types for an `HTTP::Request` Accept header.
+  def type_for_accept(request : HTTP::Request)
+    request.headers["accept"].split(",").map(&.strip).map do |accept|
+      accept.split(";").map(&.strip)
+    end.sort_by do |parts|
+      part = parts[1..-1].find { |p| p.starts_with? "q=" }
+      part ? -part.split("=")[-1].strip.to_f : -1
+    end.map(&.[0]).map do |content_type|
+      Types[content_type]
+    end.reduce do |iterator, types|
+      iterator | types
+    end
   end
 
-  def self.for_extension(ext : String)
+  # Returns the types for an `HTTP::Request` Content-Type header.
+  def type_for(request : HTTP::Request)
+    Types[request.headers["content-type"]]
+  end
+
+  # Returns the types for an `HTTP::Client::Response` Content-Type header.
+  def type_for(response : HTTP::Client::Response)
+    Types[response.content_type]
+  end
+
+  # Returns the type for a File
+  def type_for(file : File)
+    type_for file.path
+  end
+
+  # Returns the type for a filename string
+  def type_for(filename : String)
+    for_extension File.extname(filename)
+  end
+
+  # Returns the type for a extension string
+  def for_extension(ext : String)
+    ext = ext.lchomp(".")
     Set(Type).new.tap do |types|
-      types.merge! CACHE.select { |mime| mime.complete? && mime.preferred_extension == ext }
-      types.merge! CACHE.select { |mime| mime.complete? && mime.extensions.includes? ext }
+      types.merge! REGISTRY.select { |mime| mime.complete? && mime.preferred_extension == ext }
+      types.merge! REGISTRY.select { |mime| mime.complete? && mime.extensions.includes? ext }
     end
   end
 
-  def self.registered
-    CACHE.map(&.dup)
-  end
-
-  def self.inspect(io)
-    to_s io
-  end
-
-  def self.each
-    MEDIA_TYPE_RE.each
-  end
-
-  def self.extensions
-    flat_map(&.extensions)
-  end
-
-  def self.count
-    CACHE.size
-  end
-
-  def self.each
-    CACHE.each do |item|
-      yield item
-    end
-  end
-
-  def self.to_s(io)
-    io << "#<#{self.class}: #{count} variants, #{extensions.size} extensions>"
-  end
-
-  load "#{__DIR__}/../../data/mime-types.json"
+  extend self
 end
 
 require "./types/*"
