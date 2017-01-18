@@ -24,11 +24,11 @@ class MIME::Type::XRefMap
       super(T.new value)
     end
 
-    def initialize(values : Array(String))
+    def initialize(values : Enumerable(String))
       initialize(values.map { |value| T.new value })
     end
 
-    def initialize(values : Array(T))
+    def initialize(values : Enumerable(T))
       initialize
       values.each { |value| self << value }
     end
@@ -46,7 +46,7 @@ class MIME::Type::XRefMap
     draft:      XRefSet(XRef::Draft) | Nil,
     person:     XRefSet(XRef::Person) | Nil,
     rfc_errata: {type: XRefSet(XRef::RfcErrata), nilable: true, key: "rfc-errata"},
-    rfc:        XRefSet(XRef::Draft) | Nil,
+    rfc:        XRefSet(XRef::Rfc) | Nil,
     template:   XRefSet(XRef::Template) | Nil,
     uri:        XRefSet(XRef::URI) | Nil,
     notes:      XRefSet(XRef::Note) | Nil,
@@ -78,35 +78,20 @@ class MIME::Type::XRefMap
     end
   end
 
-  def draft=(value)
-    self.draft = XRefSet(Draft).new(value)
-  end
-
-  def person=(value)
-    self.person = XRefSet(Person).new(value)
-  end
-
-  def rfc_errata=(value)
-    self.rfc_errata = XRefSet(RfcErrata).new(value)
-  end
-
-  def rfc=(value)
-    self.rfc = XRefSet(Rfc).new(value)
-  end
-
-  def template=(value)
-    self.template = XRefSet(Template).new(value)
-  end
-
-  def uri=(value)
-    self.uri = XRefSet(Uri).new(value)
-  end
-
-  def notes=(value)
-    self.notes = XRefSet(Note).new(value)
-  end
-
-  def initialize
+  def initialize(draft : Array(String) | String | Nil = nil,
+                 person : Array(String) | String | Nil = nil,
+                 rfc_errata : Array(String) | String | Nil = nil,
+                 rfc : Array(String) | String | Nil = nil,
+                 template : Array(String) | String | Nil = nil,
+                 uri : Array(String) | String | Nil = nil,
+                 notes : Array(String) | String | Nil = nil)
+    @draft = draft ? XRefSet(XRef::Draft).new(draft) : nil
+    @person = person ? XRefSet(XRef::Person).new(person) : nil
+    @rfc_errata = rfc_errata ? XRefSet(XRef::RfcErrata).new(rfc_errata) : nil
+    @rfc = rfc ? XRefSet(XRef::Rfc).new(rfc) : nil
+    @template = template ? XRefSet(XRef::Template).new(template) : nil
+    @uri = uri ? XRefSet(XRef::URI).new(uri) : nil
+    @notes = notes ? XRefSet(XRef::Note).new(notes) : nil
   end
 end
 

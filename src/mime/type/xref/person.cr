@@ -1,6 +1,6 @@
 require "json"
 
-class MIME::Type::XRef::Person < MIME::Type::XRef
+struct MIME::Type::XRef::Person < MIME::Type::XRef
   def url
     "http://www.iana.org/assignments/media-types/media-types.xhtml##{@value}"
   end

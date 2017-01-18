@@ -1,6 +1,6 @@
 require "json"
 
-class MIME::Type::XRef::URI < MIME::Type::XRef
+struct MIME::Type::XRef::URI < MIME::Type::XRef
   def url
     @value
   end

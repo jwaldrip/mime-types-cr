@@ -44,22 +44,13 @@ describe MIME::Type do
         mime_type.content_type.should eq "some/type"
       end
     end
-
-    context "with a block" do
-      it "should yeild the mime_type" do
-        mime_type = MIME::Type.new("some/type", ["se"]) do |mime|
-          mime.extensions.add "ss"
-        end
-        mime_type.extensions.should eq Set.new(["se", "ss"])
-      end
-    end
   end
 
   describe "#encoding=" do
     context "with an invalid encoding" do
       it "should raise an InvalidEncoding exception" do
         expect_raises(MIME::Type::InvalidEncoding) do
-          MIME::Type.new("some/type").encoding = "foo"
+          MIME::Type.new("some/type", encoding: "foo")
         end
       end
     end
@@ -115,18 +106,14 @@ describe MIME::Type do
   describe "#ascii?" do
     context "when ascii" do
       it "should return true" do
-        mime_type = MIME::Type.new("foo/bar") do |m|
-          m.encoding = "7bit"
-        end
+        mime_type = MIME::Type.new("foo/bar", encoding: "7bit")
         mime_type.ascii?.should be_true
       end
     end
 
     context "when not ascii" do
       it "should return false" do
-        mime_type = MIME::Type.new("foo/bar") do |m|
-          m.encoding = "base64"
-        end
+        mime_type = MIME::Type.new("foo/bar", encoding: "base64")
         mime_type.ascii?.should be_false
       end
     end
@@ -135,18 +122,14 @@ describe MIME::Type do
   describe "#binary?" do
     context "when binary" do
       it "should return true" do
-        mime_type = MIME::Type.new("foo/bar") do |m|
-          m.encoding = "base64"
-        end
+        mime_type = MIME::Type.new("foo/bar", encoding: "base64")
         mime_type.binary?.should be_true
       end
     end
 
     context "when not binary" do
       it "should return false" do
-        mime_type = MIME::Type.new("foo/bar") do |m|
-          m.encoding = "7bit"
-        end
+        mime_type = MIME::Type.new("foo/bar", encoding: "7bit")
         mime_type.binary?.should be_false
       end
     end
@@ -212,6 +195,22 @@ describe MIME::Type do
     end
 
     context "when a String" do
+    end
+  end
+
+  describe "#set_friendly" do
+    context "with a lang" do
+      it "should set the friendly language" do
+        mime_type = MIME::Type.new("some/string")
+        mime_type.set_friendly("hola", lang: "sp")
+        mime_type.friendly(lang: "sp").should eq("hola")
+      end
+    end
+
+    it "should set the friendly language" do
+      mime_type = MIME::Type.new("some/string")
+      mime_type.set_friendly("hello")
+      mime_type.friendly.should eq("hello")
     end
   end
 end

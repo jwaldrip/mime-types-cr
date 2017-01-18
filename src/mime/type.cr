@@ -19,11 +19,12 @@ require "json"
 # puts text == "text/plain"                  # => true
 # puts MIME::Type.simplified("x-appl/x-zip") # => "appl/zip"
 # ```
-class MIME::Type
+struct MIME::Type
   private MEDIA_TYPE_RE = %r{(?<media_type>[-\w.+]+)/(?<sub_type>[-\w.+]*)}
   private I18N_RE = %r{[^[:alnum:]]}
   private BINARY_ENCODINGS = %w(base64 8bit)
   private ASCII_ENCODINGS = %w(7bit quoted-printable)
+  private ENCODINGS = BINARY_ENCODINGS + ASCII_ENCODINGS
 
   include Comparable(MIME::Type)
 
@@ -56,16 +57,16 @@ class MIME::Type
   getter encoding : String
 
   JSON.mapping({
-    content_type: {type: String, key: "content-type"},
+    content_type: {type: String, key: "content-type", setter: false},
     encoding:     {type: String, setter: false},
-    extensions:   {type: Set(String), default: Set(String).new},
-    xrefs:        {type: XRefMap, default: XRefMap.new},
-    friendly:     {type: Hash(String, String), default: {} of String => String, getter: false},
-    registered:   Bool,
-    obsolete:     {type: Bool, default: false},
-    signature:    {type: Bool, default: false},
-    docs:         String | Nil,
-    use_instead:  {type: String, getter: false, nilable: true, key: "use-instead"},
+    extensions:   {type: Set(String), default: Set(String).new, setter: false},
+    xrefs:        {type: XRefMap, default: XRefMap.new, setter: false},
+    friendly:     {type: Hash(String, String), default: {} of String => String, getter: false, setter: false},
+    registered:   {type: Bool, setter: false},
+    obsolete:     {type: Bool, default: false, setter: false},
+    signature:    {type: Bool, default: false, setter: false},
+    docs:         {type: String, nilable: true, setter: false},
+    use_instead:  {type: String, getter: false, nilable: true, key: "use-instead", setter: false},
   }, true)
 
   def_hash @content_type
@@ -120,27 +121,20 @@ class MIME::Type
   # * Otherwise, the *content_type* will be used as a string.
   #
   # Yields the newly constructed *self* object.
-  def initialize(@content_type : String, extensions = [] of String)
-    raise InvalidContentType.new(@content_type) unless self.class.match(@content_type)
-    @extensions = Set(String).new(extensions)
-    @xrefs = XRefMap.new
-    @friendly = {} of String => String
-    @obsolete = false
-    @registered = false
-    @signature = false
-    @encoding = default_encoding
-  end
-
-  def initialize(*args)
-    initialize(*args)
-    yield self
-  end
-
-  def encoding=(enc : String)
-    unless BINARY_ENCODINGS.includes?(enc) || ASCII_ENCODINGS.includes?(enc)
-      raise InvalidEncoding.new(enc)
-    end
-    @encoding = enc
+  def initialize(content_type : String,
+                 extensions : Enumerable(String) = [] of String,
+                 encoding : String | Nil = nil,
+                 @signature = false,
+                 @registered = false,
+                 @obsolete = false,
+                 @docs = nil,
+                 @xrefs = XRefMap.new,
+                 @friendly = {} of String => String)
+    raise InvalidContentType.new(content_type) unless self.class.match(content_type)
+    @content_type = content_type
+    raise InvalidEncoding.new(encoding) unless ENCODINGS.includes?(encoding) || encoding.nil?
+    @encoding = encoding || default_encoding
+    @extensions = extensions.to_set
   end
 
   def inspect(io)
@@ -222,25 +216,13 @@ class MIME::Type
   end
 
   # Indicates whether the MIME type has been registered with IANA.
-  getter registered : Bool
-
-  # Indicates whether the MIME type has been registered with IANA.
-  def registered?
-    registered
-  end
+  getter? registered : Bool
 
   # Indicateswhether the MIME type is declared as a signature type.
-  getter signature : Bool
-
-  # Indicateswhether the MIME type is declared as a signature type.
-  def signature?
-    signature
-  end
+  getter? signature : Bool
 
   # Returns *true* if the media type is obsolete.
-  def obsolete?
-    obsolete
-  end
+  getter? obsolete
 
   # The decoded cross-reference URL list for this MIME::Type.
   def xref_urls
@@ -256,6 +238,10 @@ class MIME::Type
 
   def friendly(lang : String = "en")
     @friendly[lang]
+  end
+
+  def set_friendly(name : String, lang : String = "en")
+    @friendly[lang] = name
   end
 
   # Indicates that a MIME type is like another type. This differs from
