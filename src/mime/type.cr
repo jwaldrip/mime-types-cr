@@ -156,43 +156,44 @@ struct MIME::Type
 
   def preferred_extension=(ext : String)
     ary = @extensions.to_a
-    ary.unshift(ext)
-    @extensions = Set.new(ary)
+    @extensions.clear
+    @extensions.add ext
+    ary.each { |ext| @extensions.add ext }
     ext
   end
 
   # Returns the media type of the simplified MIME::Type.
   #
-  #   text/plain        => text
-  #   x-chemical/x-pdb  => x-chemical
-  #   audio/QCELP       => audio
+  #   * text/plain        => text
+  #   * x-chemical/x-pdb  => x-chemical
+  #   * audio/QCELP       => audio
   def media_type
     self.class.match(simplified).try(&.["media_type"]).to_s
   end
 
   # Returns the media type of the unmodified MIME::Type.
   #
-  #   text/plain        => text
-  #   x-chemical/x-pdb  => x-chemical
-  #   audio/QCELP       => audio
+  #   * text/plain        => text
+  #   * x-chemical/x-pdb  => x-chemical
+  #   * audio/QCELP       => audio
   def raw_media_type
     self.class.match(@content_type).try(&.["media_type"]).to_s
   end
 
   # Returns the sub-type of the simplified MIME::Type.
   #
-  #   text/plain        => plain
-  #   x-chemical/x-pdb  => pdb
-  #   audio/QCELP       => qcelp
+  #   * text/plain        => plain
+  #   * x-chemical/x-pdb  => pdb
+  #   * audio/QCELP       => qcelp
   def sub_type
     self.class.match(simplified).try(&.["sub_type"]).to_s
   end
 
   # Returns the media type of the unmodified MIME::Type.
   #
-  #   text/plain        => plain
-  #   x-chemical/x-pdb  => x-pdb
-  #   audio/QCELP       => QCELP
+  #   * text/plain        => plain
+  #   * x-chemical/x-pdb  => x-pdb
+  #   * audio/QCELP       => QCELP
   def raw_sub_type
     self.class.match(@content_type).try(&.["sub_type"]).to_s
   end
@@ -294,9 +295,9 @@ struct MIME::Type
   # case-insensitive comparison, with any extension markers (<tt>x-</tt)
   # removed and converted to lowercase.
   #
-  #   text/plain        => text/plain
-  #   x-chemical/x-pdb  => x-chemical/x-pdb
-  #   audio/QCELP       => audio/qcelp
+  #   * text/plain        => text/plain
+  #   * x-chemical/x-pdb  => x-chemical/x-pdb
+  #   * audio/QCELP       => audio/qcelp
   def simplified(remove_x = false)
     MIME::Type.simplified(@content_type, remove_x).to_s
   end
