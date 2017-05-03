@@ -103,7 +103,7 @@ struct MIME::Type
     captures = [match_data[1], match_data[2]]
     captures.map do |e|
       e = e.downcase
-      e = e.lchomp("x-") if remove_x
+      e = e.lchop("x-") if remove_x
       e
     end.join(joiner)
   end
