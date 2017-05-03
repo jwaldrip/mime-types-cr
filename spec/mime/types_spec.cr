@@ -17,8 +17,9 @@ describe MIME::Types do
     end
   end
 
-  describe ".for_filename" do
+  describe ".type_for(filename : String)" do
     it "should select matching types by filename" do
+      MIME::Types.type_for("foo.js").should contain "application/javascript"
     end
   end
 

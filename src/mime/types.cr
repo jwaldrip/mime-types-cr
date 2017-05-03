@@ -119,8 +119,8 @@ module MIME::Types
   def for_extension(ext : String)
     ext = ext.lchop(".")
     Set(Type).new.tap do |types|
-      types.merge! REGISTRY.select { |mime| mime.complete? && mime.preferred_extension == ext }
-      types.merge! REGISTRY.select { |mime| mime.complete? && mime.extensions.includes? ext }
+      types.concat REGISTRY.select { |mime| mime.complete? && mime.preferred_extension == ext }
+      types.concat REGISTRY.select { |mime| mime.complete? && mime.extensions.includes? ext }
     end
   end
 

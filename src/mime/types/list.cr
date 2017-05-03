@@ -54,12 +54,12 @@ module MIME::Types
     #
     # ```
     # s = MIME::Types::List{"text/html", "text/plain"}
-    # s.merge! ["application/json"]
+    # s.concat ["application/json"]
     # s.size # => 3
     # ```
     #
     # See also: `#|` to merge two lists and return a new one.
-    def merge!(elems : Enumerable(Type | String))
+    def concat(elems : Enumerable(Type | String))
       elems.each { |elem| add elem }
       self
     end
