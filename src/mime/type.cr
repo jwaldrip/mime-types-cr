@@ -20,11 +20,11 @@ require "json"
 # puts MIME::Type.simplified("x-appl/x-zip") # => "appl/zip"
 # ```
 struct MIME::Type
-  private MEDIA_TYPE_RE = %r{(?<media_type>[-\w.+]+)/(?<sub_type>[-\w.+]*)}
-  private I18N_RE = %r{[^[:alnum:]]}
+  private MEDIA_TYPE_RE    = %r{(?<media_type>[-\w.+]+)/(?<sub_type>[-\w.+]*)}
+  private I18N_RE          = %r{[^[:alnum:]]}
   private BINARY_ENCODINGS = %w(base64 8bit)
-  private ASCII_ENCODINGS = %w(7bit quoted-printable)
-  private ENCODINGS = BINARY_ENCODINGS + ASCII_ENCODINGS
+  private ASCII_ENCODINGS  = %w(7bit quoted-printable)
+  private ENCODINGS        = BINARY_ENCODINGS + ASCII_ENCODINGS
 
   include Comparable(MIME::Type)
 
