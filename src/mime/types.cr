@@ -72,11 +72,20 @@ module MIME::Types
   #   puts t.to_a.join(", ")
   # end
   # ````
-  def self.[](content_type, complete = false, registered = false)
+  def self.[](content_type : String, complete = false, registered = false)
     types = REGISTRY.select do |mime|
       next if complete && mime.complete?
       next if registered && mime.registered?
       content_type == "*/*" || mime.content_type == content_type
+    end.map(&.dup).sort { |a, b| a.priority_compare(b) }
+    List.new types
+  end
+
+  def self.[](content_type : Regex, complete = false, registered = false)
+    types = REGISTRY.select do |mime|
+      next if complete && mime.complete?
+      next if registered && mime.registered?
+      content_type == "*/*" || mime.content_type =~ content_type
     end.map(&.dup).sort { |a, b| a.priority_compare(b) }
     List.new types
   end
@@ -118,7 +127,7 @@ module MIME::Types
   # Returns the type for a extension string
   def for_extension(ext : String)
     ext = ext.lchop(".")
-    Set(Type).new.tap do |types|
+    List.new.tap do |types|
       types.concat REGISTRY.select { |mime| mime.complete? && mime.preferred_extension == ext }
       types.concat REGISTRY.select { |mime| mime.complete? && mime.extensions.includes? ext }
     end
