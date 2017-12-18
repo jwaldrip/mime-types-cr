@@ -1,3 +1,4 @@
+require "http"
 require "spec"
 require "../src/mime-types"
 
@@ -20,6 +21,15 @@ describe MIME::Types do
   describe ".type_for(filename : String)" do
     it "should select matching types by filename" do
       MIME::Types.type_for("foo.js").should contain "application/javascript"
+    end
+  end
+
+  describe ".type_for_accept(request : HTTP::Request)" do
+    it "should select matching types by filename" do
+      headers = HTTP::Headers.new
+      headers["Accept"] = "application/json"
+      request = HTTP::Request.new("GET", "/", headers)
+      MIME::Types.type_for_accept(request).should contain MIME::Types["application/json"].first
     end
   end
 
