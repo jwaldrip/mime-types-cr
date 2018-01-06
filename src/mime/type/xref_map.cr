@@ -1,5 +1,3 @@
-require "json"
-
 class MIME::Type::XRefMap
   class XRefSet(T) < Array(T)
     def self.new
@@ -41,16 +39,6 @@ class MIME::Type::XRefMap
       map(&.url)
     end
   end
-
-  JSON.mapping({
-    draft:      XRefSet(XRef::Draft) | Nil,
-    person:     XRefSet(XRef::Person) | Nil,
-    rfc_errata: {type: XRefSet(XRef::RfcErrata), nilable: true, key: "rfc-errata"},
-    rfc:        XRefSet(XRef::Rfc) | Nil,
-    template:   XRefSet(XRef::Template) | Nil,
-    uri:        XRefSet(XRef::URI) | Nil,
-    notes:      XRefSet(XRef::Note) | Nil,
-  }, true)
 
   def urls
     ([] of String).tap do |urls|

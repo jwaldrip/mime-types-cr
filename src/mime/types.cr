@@ -32,13 +32,7 @@ require "./types/list"
 module MIME::Types
   private REGISTRY = List.new
 
-  private macro load(filename)
-    {% json = run("../loader", filename) %}
-    JSON.parse({{ json.stringify }}).each do |json|
-      register Type.from_json json.to_json
-    end
-  end
-  load "#{__DIR__}/../../data/mime-types.json"
+  {{ run("../loader", "#{__DIR__}/../../data/mime-types.json") }}
 
   # Registers a new `MIME::Type`, delegating to `MIME::Type.new`
   def self.register(*args)

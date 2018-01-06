@@ -1,5 +1,5 @@
 name: mime-types
-version: 0.12.3
+version: 1.0.0
 
 authors:
   - Jason Waldrip <jason@waldrip.net>
@@ -7,6 +7,6 @@ authors:
 description: |
   MIME::Types Registry for Crystal
 
-crystal: 0.22.0
+crystal: 0.24.1
 
 license: MIT

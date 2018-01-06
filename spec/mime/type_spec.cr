@@ -1,5 +1,4 @@
-require "spec"
-require "../src/mime-types"
+require "../spec_helper"
 
 describe MIME::Type do
   describe ".match" do

@@ -1,6 +1,5 @@
+require "../spec_helper"
 require "http"
-require "spec"
-require "../src/mime-types"
 
 describe MIME::Types do
   describe "macro: load" do

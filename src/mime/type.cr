@@ -1,5 +1,3 @@
-require "json"
-
 # The definition of one MIME content-type.
 #
 # ## Usage
@@ -56,18 +54,13 @@ struct MIME::Type
   # else.
   getter encoding : String
 
-  JSON.mapping({
-    content_type: {type: String, key: "content-type", setter: false},
-    encoding:     {type: String, setter: false},
-    extensions:   {type: Set(String), default: Set(String).new, setter: false},
-    xrefs:        {type: XRefMap, default: XRefMap.new, setter: false},
-    friendly:     {type: Hash(String, String), default: {} of String => String, getter: false, setter: false},
-    registered:   {type: Bool, setter: false},
-    obsolete:     {type: Bool, default: false, setter: false},
-    signature:    {type: Bool, default: false, setter: false},
-    docs:         {type: String, nilable: true, setter: false},
-    use_instead:  {type: String, getter: false, nilable: true, key: "use-instead", setter: false},
-  }, true)
+  getter xrefs : XRefMap
+  getter friendly : Hash(String, String)
+  getter registered : Bool
+  getter obsolete : Bool
+  getter signature : Bool
+  getter docs : String?
+  getter use_instead : String?
 
   def_hash @content_type
 
@@ -123,13 +116,15 @@ struct MIME::Type
   # Yields the newly constructed *self* object.
   def initialize(content_type : String,
                  extensions : Enumerable(String) = [] of String,
+                 *,
                  encoding : String | Nil = nil,
                  @signature = false,
                  @registered = false,
                  @obsolete = false,
                  @docs = nil,
                  @xrefs = XRefMap.new,
-                 @friendly = {} of String => String)
+                 @friendly = {} of String => String,
+                 @use_instead = nil)
     raise InvalidContentType.new(content_type) unless self.class.match(content_type)
     @content_type = content_type
     raise InvalidEncoding.new(encoding) unless ENCODINGS.includes?(encoding) || encoding.nil?
