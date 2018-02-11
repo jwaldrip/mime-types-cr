@@ -86,7 +86,7 @@ module MIME::Types
 
   # Returns the types for an `HTTP::Request` Accept header.
   def type_for_accept(request : HTTP::Request)
-    request.headers["accept"].split(",").map(&.strip).map do |accept|
+    request.headers["accept"]?.to_s.split(",").map(&.strip).map do |accept|
       accept.split(";").map(&.strip)
     end.sort_by do |parts|
       part = parts[1..-1].find { |p| p.starts_with? "q=" }
@@ -100,7 +100,8 @@ module MIME::Types
 
   # Returns the types for an `HTTP::Request` Content-Type header.
   def type_for(request : HTTP::Request)
-    Types[request.headers["content-type"]]
+    content_type = request.headers["content-type"]?.to_s.split(';').first
+    Types[content_type]
   end
 
   # Returns the types for an `HTTP::Client::Response` Content-Type header.
