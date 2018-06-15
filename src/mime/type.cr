@@ -1,3 +1,5 @@
+require "json"
+
 # The definition of one MIME content-type.
 #
 # ## Usage
@@ -23,6 +25,19 @@ struct MIME::Type
   private BINARY_ENCODINGS = %w(base64 8bit)
   private ASCII_ENCODINGS  = %w(7bit quoted-printable)
   private ENCODINGS        = BINARY_ENCODINGS + ASCII_ENCODINGS
+
+  JSON.mapping({
+    content_type: {type: String, key: "content-type", setter: false},
+    encoding:     {type: String, setter: false},
+    extensions:   {type: Set(String), default: Set(String).new, setter: false},
+    xrefs:        {type: XRefMap, default: XRefMap.new, setter: false},
+    friendly:     {type: Hash(String, String), default: {} of String => String, getter: false, setter: false},
+    registered:   {type: Bool, setter: false},
+    obsolete:     {type: Bool, default: false, setter: false},
+    signature:    {type: Bool, default: false, setter: false},
+    docs:         {type: String, nilable: true, setter: false},
+    use_instead:  {type: String, getter: false, nilable: true, key: "use-instead", setter: false},
+  }, true)
 
   include Comparable(MIME::Type)
 

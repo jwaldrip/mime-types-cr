@@ -32,8 +32,6 @@ require "./types/list"
 module MIME::Types
   private REGISTRY = List.new
 
-  {{ run("../loader", "#{__DIR__}/../../data/mime-types.json") }}
-
   # Registers a new `MIME::Type`, delegating to `MIME::Type.new`
   def self.register(*args)
     REGISTRY.add *args
@@ -129,6 +127,9 @@ module MIME::Types
   end
 
   extend self
+  Array(MIME::Type).from_json(Base64.decode_string({{ `cat #{__DIR__}/../../data/mime-types.json | base64`.stringify }})).each do |mime|
+    register mime
+  end
 end
 
 require "./types/*"
