@@ -36,7 +36,6 @@ class MIME::Type::XRefMap
   end
 end
 
-JSON.parse(File.read(ARGV[0])).each do |json|
-  mime_type = MIME::Type.from_json json.to_json
+Array(MIME::Type).from_json(File.read(ARGV[0])).each do |mime_type|
   puts "register #{mime_type.to_code}"
 end
